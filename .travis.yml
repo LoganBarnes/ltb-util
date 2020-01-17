@@ -11,9 +11,9 @@ compiler:
   - clang
 
 before_install:
-  - apt-get update
+  - sudo apt-get update
   # For coverage reports
-  - apt-get install -y lcov
+  - sudo apt-get install -y lcov
 
 install:
   # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
