@@ -20,8 +20,8 @@ if [ "${BUILD_TESTS}" == "ON" ]; then
 
   if [ "${BUILD_TYPE}" == "Debug" ] && [ "${CXX}" == "g++" ]; then
     # Generate coverage reports
-    COVERAGE_TARGETS="$(find docker-cmake-build-debug -maxdepth 1 -executable -type f -name 'test_*' -exec basename {} \; | sed 's/[^ ]* */&_coverage/g')"
+    COVERAGE_TARGETS="$(find docker-cmake-build -maxdepth 1 -executable -type f -name 'test_*' -exec basename {} \; | sed 's/[^ ]* */&_coverage/g')"
     # shellcheck disable=SC2086
-    cmake -E chdir docker-cmake-build-debug cmake --build . --target ${COVERAGE_TARGETS}
+    cmake -E chdir docker-cmake-build cmake --build . --target ${COVERAGE_TARGETS}
   fi
 fi
