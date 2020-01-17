@@ -1,0 +1,5 @@
+# build directories
+*build*
+
+# auto generated imgui config
+imgui.ini
