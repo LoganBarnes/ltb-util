@@ -35,6 +35,7 @@ add_subdirectory(ltb-util)
 ########################
 ### External Targets ###
 ########################
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/ThirdParty.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/CreateProtoLibrary.cmake)
 
 ####################
@@ -57,7 +58,8 @@ ltb_add_library(ltb_net
 
 ltb_link_libraries(ltb_net
         PUBLIC
-        gRPC::grpc++
+        ${_GRPC_LIBRARY}
+        ${_PROTOBUF_LIBRARY}
         Ltb::Util
         )
 

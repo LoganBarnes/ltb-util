@@ -49,77 +49,75 @@ auto to_client_connection_state(grpc_connectivity_state const& state) -> ClientC
 } // namespace
 
 AsyncClient::AsyncClient(std::string const& host_address) {
-    data_.use_safely([this, host_address](auto& data) {
-        completion_queue_ = std::make_unique<grpc::CompletionQueue>();
-        data.channel = grpc::CreateChannel(host_address, grpc::InsecureChannelCredentials());
-    });
+    std::lock_guard channel_lock(channel_mutex_);
+    data_.channel = grpc::CreateChannel(host_address, grpc::InsecureChannelCredentials());
 }
 
 auto AsyncClient::run() -> void {
-    data_.use_safely([this](auto& data) {
-        auto grpc_state = data.channel->GetState(true);
-        data.connection_state = to_client_connection_state(grpc_state);
+    {
+        std::lock_guard channel_lock(channel_mutex_);
+        auto grpc_state = data_.channel->GetState(true);
+        data_.connection_state = to_client_connection_state(grpc_state);
 
-        if (data.state_change_callback) {
-            data.state_change_callback(data.connection_state);
+        if (data_.state_change_callback) {
+            data_.state_change_callback(data_.connection_state);
         }
 
         // Ask the channel to notify us when state changes by updating 'completion_queue'
-        data.channel->NotifyOnStateChange(grpc_state,
-                                          grpc::g_core_codegen_interface->gpr_inf_future(GPR_CLOCK_REALTIME),
-                                          completion_queue_.get(),
-                                          data.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
-    });
+        data_.channel->NotifyOnStateChange(grpc_state,
+                                           std::chrono::time_point<std::chrono::system_clock>::max(),
+                                           &completion_queue_,
+                                           data_.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
+    }
+    //);
 
     void* raw_tag;
     bool completed_successfully;
 
-    while (completion_queue_->Next(&raw_tag, &completed_successfully)) {
-        data_.use_safely([this, raw_tag, completed_successfully](auto& data) {
-            auto tag = data.tagger.get_tag(raw_tag);
-            // std::cout << (completed_successfully ? "Success: " : "Failure: ") << tag << std::endl;
+    while (completion_queue_.Next(&raw_tag, &completed_successfully)) {
+        std::lock_guard channel_lock(channel_mutex_);
+        auto tag = data_.tagger.get_tag(raw_tag);
+        // std::cout << (completed_successfully ? "Success: " : "Failure: ") << tag << std::endl;
 
-            switch (tag.label) {
+        switch (tag.label) {
 
-            case ClientTagLabel::ConnectionChange: {
-                if (completed_successfully && data.channel) {
-                    auto grpc_state = data.channel->GetState(true);
+        case ClientTagLabel::ConnectionChange: {
+            if (completed_successfully && data_.channel) {
+                auto grpc_state = data_.channel->GetState(true);
 
-                    auto state = to_client_connection_state(grpc_state);
+                auto state = to_client_connection_state(grpc_state);
 
-                    if (data.connection_state != state && data.state_change_callback) {
-                        data.state_change_callback(state);
-                    }
-                    data.connection_state = state;
-
-                    // Ask the channel to notify us when state changes by updating 'completion_queue_'
-                    data.channel->NotifyOnStateChange(grpc_state,
-                                                      grpc::g_core_codegen_interface->gpr_inf_future(
-                                                          GPR_CLOCK_REALTIME),
-                                                      completion_queue_.get(),
-                                                      data.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
+                if (data_.connection_state != state && data_.state_change_callback) {
+                    data_.state_change_callback(state);
                 }
+                data_.connection_state = state;
 
-            } break;
+                // Ask the channel to notify us when state changes by updating 'completion_queue_'
+                data_.channel->NotifyOnStateChange(grpc_state,
+                                                   std::chrono::time_point<std::chrono::system_clock>::max(),
+                                                   &completion_queue_,
+                                                   data_.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
+            }
 
-            case ClientTagLabel::Finished: {
-            } break;
+        } break;
 
-            } // end switch
-        });
+        case ClientTagLabel::Finished: {
+        } break;
+
+        } // end switch
     }
 }
 
 auto AsyncClient::on_state_change(StateChangeCallback callback) -> AsyncClient& {
-    data_.use_safely([callback](auto& data) { data.state_change_callback = callback; });
+    std::lock_guard channel_lock(channel_mutex_);
+    data_.state_change_callback = callback;
     return *this;
 }
 
 auto AsyncClient::shutdown() -> void {
-    data_.use_safely([this](auto& data) {
-        completion_queue_->Shutdown();
-        data.channel = nullptr;
-    });
+    std::lock_guard channel_lock(channel_mutex_);
+    completion_queue_.Shutdown();
+    data_.channel = nullptr;
 }
 
 } // namespace ltb::net

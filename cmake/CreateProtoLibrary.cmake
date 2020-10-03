@@ -20,23 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ##########################################################################################
-
-### Threads ###
-find_package(Threads REQUIRED)
-
-# Find the Protobuf and gRPC libraries installed by CMake.
-
-### Protobuf ###
-find_package(Protobuf CONFIG REQUIRED)
-message(STATUS "Using protobuf ${Protobuf_VERSION}")
-
-### gRPC ###
-find_package(gRPC CONFIG REQUIRED)
-message(STATUS "Using gRPC ${gRPC_VERSION}")
-
-set(_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
-set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
-
 function(grpc_generate_cpp _generated_files)
     # set(options OPTIONAL FAST)
     set(oneValueArgs CPP_OUT GRPC_OUT)
@@ -120,6 +103,6 @@ function(create_proto_library _target_name _proto_dir _generated_dir)
             )
 
     add_library(${_target_name} ${GENERATED_FILES})
-    target_link_libraries(${_target_name} PUBLIC gRPC::grpc++)
+    target_link_libraries(${_target_name} PUBLIC ${_GRPC_LIBRARY})
     target_include_directories(${_target_name} SYSTEM PUBLIC ${_generated_dir})
 endfunction()

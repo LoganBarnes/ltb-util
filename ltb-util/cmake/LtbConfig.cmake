@@ -29,7 +29,7 @@ if (NOT LTB_CONFIGURED)
     option(LTB_BUILD_TESTS "Build unit tests" OFF)
     option(LTB_USE_DEV_FLAGS "Compile with all the flags" OFF)
     option(LTB_USE_CUDA "Enable CUDA features if available" ON)
-    option(LTB_THREAD_SANITIZATION "Add thread sanitizer flags (only in debug mode)" OFF)
+    option(LTB_THREAD_SANITIZATION "Add thread sanitizer flags (clang debug only)" OFF)
 
     # Disabling CUDA support for lower versions because there is a cmake bug
     # which causes an undefined reference to '__cudaUnregisterFatBinary'.

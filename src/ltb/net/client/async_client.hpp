@@ -61,6 +61,9 @@ public:
     auto shutdown() -> void;
 
 private:
+    std::mutex channel_mutex_;
+    grpc::CompletionQueue completion_queue_;
+
     struct Data {
         ClientTagger tagger;
 
@@ -68,10 +71,9 @@ private:
         ClientConnectionState connection_state;
 
         StateChangeCallback state_change_callback;
-    };
+    } data_;
 
-    std::unique_ptr<grpc::CompletionQueue> completion_queue_;
-    util::AtomicData<Data> data_;
+//    util::AtomicData<Data> data_;
 };
 
 } // namespace ltb::net
