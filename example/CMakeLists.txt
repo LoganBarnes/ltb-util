@@ -1,0 +1,41 @@
+##########################################################################################
+# LTB Networking
+# Copyright (c) 2020 Logan Barnes - All Rights Reserved
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+##########################################################################################
+create_proto_library(ltb_net_example_protos
+        ${CMAKE_CURRENT_LIST_DIR}/protos
+        ${CMAKE_BINARY_DIR}/generated/protos
+        )
+target_link_libraries(ltb_net_example_protos PUBLIC Ltb::Net)
+
+ltb_add_executable(example_client
+        17
+        ${CMAKE_CURRENT_LIST_DIR}/src/example_client.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/example_client.hpp
+        )
+ltb_add_executable(example_server
+        17
+        ${CMAKE_CURRENT_LIST_DIR}/src/example_server.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/example_server.hpp
+        )
+
+target_link_libraries(example_client PUBLIC ltb_net_example_protos)
+target_link_libraries(example_server PUBLIC ltb_net_example_protos)
