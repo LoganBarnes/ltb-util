@@ -103,6 +103,6 @@ function(create_proto_library _target_name _proto_dir _generated_dir)
             )
 
     add_library(${_target_name} ${GENERATED_FILES})
-    target_link_libraries(${_target_name} PUBLIC ${_GRPC_LIBRARY})
+    target_link_libraries(${_target_name} PUBLIC ${_GRPC_TARGET})
     target_include_directories(${_target_name} SYSTEM PUBLIC ${_generated_dir})
 endfunction()

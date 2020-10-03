@@ -23,7 +23,7 @@
 cmake_minimum_required(VERSION 3.18)
 project(LtbNet LANGUAGES CXX)
 
-option(LTB_NET_BUILD_EXAMPLE "Build an example server and client" OFF)
+option(LTB_NET_BUILD_EXAMPLES "Build an example server and client" OFF)
 
 include(${CMAKE_CURRENT_LIST_DIR}/ltb-util/cmake/LtbConfig.cmake) # <-- Additional project options are in here.
 
@@ -58,8 +58,7 @@ ltb_add_library(ltb_net
 
 ltb_link_libraries(ltb_net
         PUBLIC
-        ${_GRPC_LIBRARY}
-        ${_PROTOBUF_LIBRARY}
+        ${_GRPC_TARGET}
         Ltb::Util
         )
 
@@ -85,6 +84,6 @@ endif ()
 ###############
 ### Example ###
 ###############
-if (${LTB_NET_BUILD_EXAMPLE})
+if (${LTB_NET_BUILD_EXAMPLES})
     add_subdirectory(example)
 endif ()

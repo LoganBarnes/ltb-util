@@ -57,7 +57,7 @@ if (${LTB_THREAD_SANITIZATION})
 
     message(STATUS "Using locally built gRPC")
 
-    set(_GRPC_LIBRARY grpc++)
+    set(_GRPC_TARGET grpc++)
     set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
 
 else ()
@@ -66,6 +66,6 @@ else ()
     find_package(gRPC CONFIG REQUIRED)
     message(STATUS "Using gRPC ${gRPC_VERSION}")
 
-    set(_GRPC_LIBRARY $<TARGET_FILE:gRPC::grpc++>)
+    set(_GRPC_TARGET gRPC::grpc++)
     set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
 endif ()
