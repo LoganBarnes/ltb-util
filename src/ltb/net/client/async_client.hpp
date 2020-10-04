@@ -37,7 +37,7 @@ namespace ltb::net {
 
 enum class ClientConnectionState {
     NoHostSpecified,
-    UsingInterprocessServer,
+    InterprocessServerAlwaysConnected,
     NotConnected,
     AttemptingToConnect,
     Connected,

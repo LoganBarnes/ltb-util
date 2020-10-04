@@ -88,7 +88,7 @@ AsyncClient::AsyncClient(std::string const& host_address) {
 AsyncClient::AsyncClient(grpc::Server& interprocess_server) {
     std::lock_guard channel_lock(channel_mutex_);
     data_.channel          = interprocess_server.InProcessChannel({});
-    data_.connection_state = ClientConnectionState::UsingInterprocessServer;
+    data_.connection_state = ClientConnectionState::InterprocessServerAlwaysConnected;
 }
 
 auto AsyncClient::run() -> void {

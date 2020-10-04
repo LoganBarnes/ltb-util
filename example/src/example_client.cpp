@@ -35,8 +35,8 @@ auto operator<<(std::ostream& os, ltb::net::ClientConnectionState const& state) 
     switch (state) {
     case net::ClientConnectionState::NoHostSpecified:
         return os << "NoHostSpecified";
-    case net::ClientConnectionState::UsingInterprocessServer:
-        return os << "UsingInterprocessServer";
+    case net::ClientConnectionState::InterprocessServerAlwaysConnected:
+        return os << "InterprocessServerAlwaysConnected";
     case ltb::net::ClientConnectionState::NotConnected:
         return os << "NotConnected";
     case ltb::net::ClientConnectionState::AttemptingToConnect:
