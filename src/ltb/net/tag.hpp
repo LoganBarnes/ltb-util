@@ -41,14 +41,14 @@ enum class ServerTagLabel {
 };
 
 struct ClientTag {
-    void* data;
+    void*          data;
     ClientTagLabel label;
 
     ClientTag(void* d, ClientTagLabel l);
 };
 
 struct ServerTag {
-    void* data;
+    void*          data;
     ServerTagLabel label;
 
     ServerTag(void* d, ServerTagLabel l);

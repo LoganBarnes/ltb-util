@@ -36,7 +36,7 @@ struct ClientTagger {
     auto get_tag(void* key) -> ClientTag;
 
 public:
-    std::mutex mutex_;
+    std::mutex                                            mutex_;
     std::unordered_map<void*, std::unique_ptr<ClientTag>> tags_;
 };
 
@@ -45,7 +45,7 @@ struct ServerTagger {
     auto get_tag(void* key) -> ServerTag;
 
 public:
-    std::mutex mutex_;
+    std::mutex                                            mutex_;
     std::unordered_map<void*, std::unique_ptr<ServerTag>> tags_;
 };
 

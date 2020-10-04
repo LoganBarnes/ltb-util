@@ -62,15 +62,15 @@ std::ostream& operator<<(std::ostream& os, const ServerTag& tag) {
 namespace detail {
 
 void* make_tag(void* data, ClientTagLabel label, std::unordered_map<void*, std::unique_ptr<ClientTag>>* tags) {
-    auto&& tag = std::make_unique<ClientTag>(data, label);
-    void* result = tag.get();
+    auto&& tag    = std::make_unique<ClientTag>(data, label);
+    void*  result = tag.get();
     tags->emplace(result, std::forward<decltype(tag)>(tag));
     return result;
 }
 
 void* make_tag(void* data, ServerTagLabel label, std::unordered_map<void*, std::unique_ptr<ServerTag>>* tags) {
-    auto&& tag = std::make_unique<ServerTag>(data, label);
-    void* result = tag.get();
+    auto&& tag    = std::make_unique<ServerTag>(data, label);
+    void*  result = tag.get();
     tags->emplace(result, std::forward<decltype(tag)>(tag));
     return result;
 }

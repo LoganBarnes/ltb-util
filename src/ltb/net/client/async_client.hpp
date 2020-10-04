@@ -77,7 +77,7 @@ private:
         ClientTagger tagger;
 
         std::shared_ptr<grpc::Channel> channel;
-        ClientConnectionState          connection_state = ClientConnectionState::NoChannel;
+        ClientConnectionState          connection_state = ClientConnectionState::NoHostSpecified;
 
         StateChangeCallback state_change_callback;
     } data_;
