@@ -29,15 +29,14 @@
 #include <thread>
 
 namespace ltb::example {
-
-ExampleClient::ExampleClient() = default;
-
-} // namespace ltb::example
-
 namespace {
 
 auto operator<<(std::ostream& os, ltb::net::ClientConnectionState const& state) -> std::ostream& {
     switch (state) {
+    case net::ClientConnectionState::NoHostSpecified:
+        return os << "NoHostSpecified";
+    case net::ClientConnectionState::UsingInterprocessServer:
+        return os << "UsingInterprocessServer";
     case ltb::net::ClientConnectionState::NotConnected:
         return os << "NotConnected";
     case ltb::net::ClientConnectionState::AttemptingToConnect:
@@ -54,21 +53,21 @@ auto operator<<(std::ostream& os, ltb::net::ClientConnectionState const& state) 
 
 } // namespace
 
-auto main() -> int {
-    const auto host_address = "0.0.0.0:50051";
+ExampleClient::ExampleClient(std::string const& host_address) : async_client_(host_address) {}
 
+ExampleClient::ExampleClient(grpc::Server& interprocess_server) : async_client_(interprocess_server) {}
+
+auto ExampleClient::run() -> void {
     // using Service = ltb::example::ChatRoom;
 
-    ltb::net::AsyncClient client(host_address);
+    async_client_.on_state_change([](auto state) { std::cout << state << std::endl; }, ltb::net::CallImmediately::Yes);
 
-    client.on_state_change([](auto state) { std::cout << state << std::endl; });
-
-    std::thread run_thread([&client] { client.run(); });
+    std::thread run_thread([this] { async_client_.run(); });
 
     std::cin.ignore();
-    client.shutdown();
+    async_client_.shutdown();
 
     run_thread.join();
-
-    return 0;
 }
+
+} // namespace ltb::example

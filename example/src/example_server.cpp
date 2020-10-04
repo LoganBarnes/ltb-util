@@ -32,30 +32,35 @@ ExampleService::PokeUser(grpc::ServerContext* context, grpc::ServerReader<User::
     return Service::PokeUser(context, reader, response);
 }
 
-grpc::Status ExampleService::SearchMessages(grpc::ServerContext* context,
+grpc::Status ExampleService::SearchMessages(grpc::ServerContext*                 context,
                                             google::protobuf::StringValue const* request,
-                                            grpc::ServerWriter<UserMessage>* writer) {
+                                            grpc::ServerWriter<UserMessage>*     writer) {
     return Service::SearchMessages(context, request, writer);
 }
 
-grpc::Status ExampleService::GetMessages(grpc::ServerContext* context,
+grpc::Status ExampleService::GetMessages(grpc::ServerContext*                                         context,
                                          grpc::ServerReaderWriter<ChatMessageResult, ChatMessage_Id>* stream) {
     return Service::GetMessages(context, stream);
 }
 
-grpc::Status ExampleService::GetUpdates(grpc::ServerContext* context,
+grpc::Status ExampleService::GetUpdates(grpc::ServerContext*           context,
                                         google::protobuf::Empty const* request,
-                                        grpc::ServerWriter<Update>* writer) {
+                                        grpc::ServerWriter<Update>*    writer) {
     return Service::GetUpdates(context, request, writer);
 }
 
-ExampleServer::ExampleServer() = default;
-
-auto ExampleServer::start(std::string const& host_address) -> void {
+ExampleServer::ExampleServer(std::string const& host_address) {
     grpc::ServerBuilder builder;
-    builder.AddListeningPort(host_address, grpc::InsecureServerCredentials());
+    if (!host_address.empty()) {
+        std::cout << "S: " << host_address << std::endl;
+        builder.AddListeningPort(host_address, grpc::InsecureServerCredentials());
+    }
     builder.RegisterService(&service_);
     server_ = builder.BuildAndStart();
+}
+
+auto ExampleServer::grpc_server() -> grpc::Server& {
+    return *server_;
 }
 
 auto ExampleServer::shutdown() -> void {
@@ -63,14 +68,3 @@ auto ExampleServer::shutdown() -> void {
 }
 
 } // namespace ltb::example
-
-auto main() -> int {
-    ltb::example::ExampleServer server;
-    server.start();
-
-    std::cout << "Press enter to exit" << std::endl;
-    std::cin.ignore();
-
-    server.shutdown();
-    return 0;
-}

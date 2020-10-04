@@ -16,11 +16,20 @@
 // ///////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
+// project
+#include "ltb/net/client/async_client.hpp"
+
 namespace ltb::example {
 
 class ExampleClient {
 public:
-    ExampleClient();
+    explicit ExampleClient(std::string const& host_address);
+    explicit ExampleClient(grpc::Server& interprocess_server);
+
+    auto run() -> void;
+
+private:
+    ltb::net::AsyncClient async_client_;
 };
 
 } // namespace ltb::example

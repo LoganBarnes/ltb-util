@@ -33,27 +33,27 @@ public:
     grpc::Status
     PokeUser(grpc::ServerContext* context, grpc::ServerReader<User::Id>* reader, util::Result* response) override;
 
-    grpc::Status SearchMessages(grpc::ServerContext* context,
+    grpc::Status SearchMessages(grpc::ServerContext*                 context,
                                 google::protobuf::StringValue const* request,
-                                grpc::ServerWriter<UserMessage>* writer) override;
+                                grpc::ServerWriter<UserMessage>*     writer) override;
 
-    grpc::Status GetMessages(grpc::ServerContext* context,
+    grpc::Status GetMessages(grpc::ServerContext*                                         context,
                              grpc::ServerReaderWriter<ChatMessageResult, ChatMessage_Id>* stream) override;
 
-    grpc::Status GetUpdates(grpc::ServerContext* context,
+    grpc::Status GetUpdates(grpc::ServerContext*           context,
                             google::protobuf::Empty const* request,
-                            grpc::ServerWriter<Update>* writer) override;
+                            grpc::ServerWriter<Update>*    writer) override;
 };
 
 class ExampleServer {
 public:
-    ExampleServer();
+    explicit ExampleServer(std::string const& host_address = "");
 
-    auto start(std::string const& host_address = "0.0.0.0:50051") -> void;
+    auto grpc_server() -> grpc::Server&;
     auto shutdown() -> void;
 
 private:
-    ExampleService service_;
+    ExampleService                service_;
     std::unique_ptr<grpc::Server> server_;
 };
 

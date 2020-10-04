@@ -28,6 +28,7 @@
 
 // external
 #include <grpc++/channel.h>
+#include <grpc++/server.h>
 
 // standard
 #include <functional>
@@ -35,6 +36,8 @@
 namespace ltb::net {
 
 enum class ClientConnectionState {
+    NoHostSpecified,
+    UsingInterprocessServer,
     NotConnected,
     AttemptingToConnect,
     Connected,
@@ -47,13 +50,19 @@ enum class ConnectionAttempt {
     DoNotTry,
 };
 
+enum class CallImmediately {
+    Yes,
+    No,
+};
+
 class AsyncClient {
 public:
     explicit AsyncClient(std::string const& host_address);
+    explicit AsyncClient(grpc::Server& interprocess_server);
 
     using StateChangeCallback = std::function<void(ClientConnectionState)>;
 
-    auto on_state_change(StateChangeCallback callback) -> AsyncClient&;
+    auto on_state_change(StateChangeCallback callback, CallImmediately call_immediately) -> AsyncClient&;
 
     /// \brief Blocks the current thread.
     auto run() -> void;
@@ -61,19 +70,19 @@ public:
     auto shutdown() -> void;
 
 private:
-    std::mutex channel_mutex_;
+    std::mutex            channel_mutex_;
     grpc::CompletionQueue completion_queue_;
 
     struct Data {
         ClientTagger tagger;
 
         std::shared_ptr<grpc::Channel> channel;
-        ClientConnectionState connection_state;
+        ClientConnectionState          connection_state = ClientConnectionState::NoChannel;
 
         StateChangeCallback state_change_callback;
     } data_;
 
-//    util::AtomicData<Data> data_;
+    //    util::AtomicData<Data> data_;
 };
 
 } // namespace ltb::net

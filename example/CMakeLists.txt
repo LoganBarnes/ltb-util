@@ -20,22 +20,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ##########################################################################################
+
+### Protocol Buffers ###
 create_proto_library(ltb_net_example_protos
         ${CMAKE_CURRENT_LIST_DIR}/protos
         ${CMAKE_BINARY_DIR}/generated/protos
         )
 target_link_libraries(ltb_net_example_protos PUBLIC Ltb::Net)
 
-ltb_add_executable(example_client
-        17
-        ${CMAKE_CURRENT_LIST_DIR}/src/example_client.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/example_client.hpp
+### Source Files ###
+set(LTB_NET_EXAMPLE_MAIN ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
+file(GLOB_RECURSE LTB_NET_EXAMPLE_SOURCE_FILES
+        LIST_DIRECTORIES false
+        CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_LIST_DIR}/src/*
         )
-ltb_add_executable(example_server
+list(REMOVE_ITEM LTB_NET_EXAMPLE_SOURCE_FILES ${LTB_NET_EXAMPLE_MAIN})
+
+### Executable ###
+ltb_add_executable(ltb_net_example
         17
-        ${CMAKE_CURRENT_LIST_DIR}/src/example_server.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/example_server.hpp
+        ${LTB_NET_EXAMPLE_MAIN}
+        ${LTB_NET_EXAMPLE_SOURCE_FILES}
         )
 
-target_link_libraries(example_client PUBLIC ltb_net_example_protos)
-target_link_libraries(example_server PUBLIC ltb_net_example_protos)
+ltb_link_libraries(ltb_net_example
+        PUBLIC
+        ltb_net_example_protos
+        )
