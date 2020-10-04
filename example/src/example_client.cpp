@@ -19,9 +19,6 @@
 // project
 #include "ltb/net/client/async_client.hpp"
 
-// generated
-#include <protos/chat/chat_room.grpc.pb.h>
-
 // external
 #include <grpc++/create_channel.h>
 
@@ -58,16 +55,32 @@ ExampleClient::ExampleClient(std::string const& host_address) : async_client_(ho
 ExampleClient::ExampleClient(grpc::Server& interprocess_server) : async_client_(interprocess_server) {}
 
 auto ExampleClient::run() -> void {
-    // using Service = ltb::example::ChatRoom;
+    std::cout << "EC: Running..." << std::endl;
 
     async_client_.on_state_change([](auto state) { std::cout << state << std::endl; }, ltb::net::CallImmediately::Yes);
 
     std::thread run_thread([this] { async_client_.run(); });
 
+    std::cout << "EC: Running" << std::endl;
     std::cin.ignore();
+    std::cout << "EC: Action dispatched..." << std::endl;
+
+    Action action;
+    *action.mutable_send_message() = "Test message";
+    dispatch_action(action);
+
+    std::cout << "EC: Action dispatched" << std::endl;
+    std::cin.ignore();
+    std::cout << "EC: Shutdown..." << std::endl;
     async_client_.shutdown();
 
+    std::cout << "EC: Shutdown" << std::endl;
     run_thread.join();
+}
+
+auto ExampleClient::dispatch_action(Action const& action) -> ExampleClient& {
+    async_client_.unary_rpc(&ChatRoom::Stub::AsyncDispatchAction, action);
+    return *this;
 }
 
 } // namespace ltb::example

@@ -51,7 +51,7 @@ service ChatRoom {
 
 message Action {
     oneof action {
-        ChatMessage send_message = 1;
+        string send_message = 1;
         UserInfo change_client_info = 2;
     }
 }

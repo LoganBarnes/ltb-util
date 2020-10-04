@@ -23,38 +23,22 @@
 #pragma once
 
 // project
+#include "async_client_data.hpp"
 #include "ltb/net/tagger.hpp"
 #include "ltb/util/atomic_data.hpp"
 
 // external
 #include <grpc++/channel.h>
+#include <grpc++/create_channel.h>
 #include <grpc++/server.h>
 
 // standard
 #include <functional>
+#include <unordered_map>
 
 namespace ltb::net {
 
-enum class ClientConnectionState {
-    NoHostSpecified,
-    InterprocessServerAlwaysConnected,
-    NotConnected,
-    AttemptingToConnect,
-    Connected,
-    RecoveringFromFailure,
-    Shutdown,
-};
-
-enum class ConnectionAttempt {
-    TryIfNotConnected,
-    DoNotTry,
-};
-
-enum class CallImmediately {
-    Yes,
-    No,
-};
-
+template <typename Service>
 class AsyncClient {
 public:
     explicit AsyncClient(std::string const& host_address);
@@ -62,12 +46,19 @@ public:
 
     using StateChangeCallback = std::function<void(ClientConnectionState)>;
 
-    auto on_state_change(StateChangeCallback callback, CallImmediately call_immediately) -> AsyncClient&;
+    template <typename Request, typename Response>
+    using UnaryCallPtr = auto (Service::Stub::*)(grpc::ClientContext*, Request const&, grpc::CompletionQueue*)
+                             -> std::unique_ptr<grpc_impl::ClientAsyncResponseReader<Response>>;
 
     /// \brief Blocks the current thread.
     auto run() -> void;
 
     auto shutdown() -> void;
+
+    auto on_state_change(StateChangeCallback callback, CallImmediately call_immediately) -> AsyncClient&;
+
+    template <typename Request, typename Response>
+    auto unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr, Request const& request) -> void;
 
 private:
     std::mutex            channel_mutex_;
@@ -76,13 +67,132 @@ private:
     struct Data {
         ClientTagger tagger;
 
-        std::shared_ptr<grpc::Channel> channel;
-        ClientConnectionState          connection_state = ClientConnectionState::NoHostSpecified;
+        std::shared_ptr<grpc::Channel>          channel;
+        std::unique_ptr<typename Service::Stub> stub;
+        ClientConnectionState                   connection_state = ClientConnectionState::NoHostSpecified;
+
+        std::unordered_map<AsyncClientRpcCallData*, std::unique_ptr<AsyncClientRpcCallData>> rpc_call_data;
 
         StateChangeCallback state_change_callback;
     } data_;
 
     //    util::AtomicData<Data> data_;
 };
+
+namespace detail {
+
+auto to_client_connection_state(grpc_connectivity_state const& state) -> ClientConnectionState;
+auto state_notification_deadline() -> std::chrono::time_point<std::chrono::system_clock>;
+
+} // namespace detail
+
+template <typename Service>
+AsyncClient<Service>::AsyncClient(std::string const& host_address) {
+    std::lock_guard channel_lock(channel_mutex_);
+    // std::cout << "C: " << host_address << std::endl;
+    data_.channel = grpc::CreateChannel(host_address, grpc::InsecureChannelCredentials());
+    data_.stub    = Service::NewStub(data_.channel);
+
+    auto grpc_state        = data_.channel->GetState(true);
+    data_.connection_state = detail::to_client_connection_state(grpc_state);
+
+    // Ask the channel to notify us when state changes by updating 'completion_queue'
+    data_.channel->NotifyOnStateChange(grpc_state,
+                                       detail::state_notification_deadline(),
+                                       &completion_queue_,
+                                       data_.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
+}
+
+template <typename Service>
+AsyncClient<Service>::AsyncClient(grpc::Server& interprocess_server) {
+    std::lock_guard channel_lock(channel_mutex_);
+    data_.channel          = interprocess_server.InProcessChannel({});
+    data_.stub             = Service::NewStub(data_.channel);
+    data_.connection_state = ClientConnectionState::InterprocessServerAlwaysConnected;
+}
+
+template <typename Service>
+auto AsyncClient<Service>::run() -> void {
+
+    void* raw_tag;
+    bool  completed_successfully;
+
+    while (completion_queue_.Next(&raw_tag, &completed_successfully)) {
+        std::lock_guard channel_lock(channel_mutex_);
+        auto            tag = data_.tagger.get_tag(raw_tag);
+        std::cout << "C: " << (completed_successfully ? "Success: " : "Failure: ") << tag << std::endl;
+
+        switch (tag.label) {
+
+        case ClientTagLabel::ConnectionChange: {
+            if (completed_successfully && data_.channel) {
+                auto grpc_state = data_.channel->GetState(true);
+                auto state      = detail::to_client_connection_state(grpc_state);
+
+                if (data_.connection_state != state && data_.state_change_callback) {
+                    data_.state_change_callback(state);
+                }
+                data_.connection_state = state;
+
+                // Ask the channel to notify us when state changes by updating 'completion_queue_'
+                data_.channel->NotifyOnStateChange(grpc_state,
+                                                   detail::state_notification_deadline(),
+                                                   &completion_queue_,
+                                                   data_.tagger.make_tag(nullptr, ClientTagLabel::ConnectionChange));
+            }
+
+        } break;
+
+        case ClientTagLabel::UnaryFinished: {
+            auto call_data = static_cast<AsyncClientRpcCallData*>(tag.data);
+            // TODO: call_data.process_callbacks();
+            data_.rpc_call_data.erase(call_data);
+        } break;
+
+        } // end switch
+    }
+
+    data_.connection_state = ClientConnectionState::NoHostSpecified;
+    if (data_.state_change_callback) {
+        data_.state_change_callback(data_.connection_state);
+    }
+}
+
+template <typename Service>
+auto AsyncClient<Service>::shutdown() -> void {
+    std::lock_guard channel_lock(channel_mutex_);
+    completion_queue_.Shutdown();
+    data_.stub    = nullptr;
+    data_.channel = nullptr;
+}
+
+template <typename Service>
+auto AsyncClient<Service>::on_state_change(StateChangeCallback callback, CallImmediately call_immediately)
+    -> AsyncClient& {
+    std::lock_guard channel_lock(channel_mutex_);
+    data_.state_change_callback = callback;
+    if (call_immediately == CallImmediately::Yes) {
+        data_.state_change_callback(data_.connection_state);
+    }
+    return *this;
+}
+
+template <typename Service>
+template <typename Request, typename Response>
+auto AsyncClient<Service>::unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr, Request const& request) -> void {
+    std::lock_guard channel_lock(channel_mutex_);
+
+    auto unary_call_data     = std::make_unique<AsyncClientUnaryCallData<Response>>();
+    auto raw_unary_call_data = unary_call_data.get();
+
+    unary_call_data->response_reader
+        = ((data_.stub.get())->*unary_call_ptr)(&unary_call_data->context, request, &completion_queue_);
+
+    unary_call_data->response_reader->Finish(&unary_call_data->reply,
+                                             &unary_call_data->status,
+                                             data_.tagger.make_tag(raw_unary_call_data, ClientTagLabel::UnaryFinished));
+
+    data_.rpc_call_data.emplace(raw_unary_call_data, std::move(unary_call_data));
+}
 
 } // namespace ltb::net

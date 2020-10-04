@@ -51,8 +51,8 @@ if (${LTB_THREAD_SANITIZATION})
 
         add_subdirectory(${grpc_dl_SOURCE_DIR} ${grpc_dl_BINARY_DIR} EXCLUDE_FROM_ALL)
 
-        target_include_directories(grpc++ SYSTEM PUBLIC ${gRPC_SOURCE_DIR}/include)
-        target_compile_options(grpc++ PUBLIC -w)
+        # Mark headers as system headers to avoid compiler warnings
+        target_include_directories(grpc++ SYSTEM PUBLIC $<BUILD_INTERFACE:${grpc_dl_SOURCE_DIR}/include>)
     endif ()
 
     message(STATUS "Using locally built gRPC")

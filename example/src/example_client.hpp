@@ -19,6 +19,9 @@
 // project
 #include "ltb/net/client/async_client.hpp"
 
+// generated
+#include <protos/chat/chat_room.grpc.pb.h>
+
 namespace ltb::example {
 
 class ExampleClient {
@@ -28,8 +31,10 @@ public:
 
     auto run() -> void;
 
+    auto dispatch_action(Action const& action) -> ExampleClient&;
+
 private:
-    ltb::net::AsyncClient async_client_;
+    ltb::net::AsyncClient<ChatRoom> async_client_;
 };
 
 } // namespace ltb::example

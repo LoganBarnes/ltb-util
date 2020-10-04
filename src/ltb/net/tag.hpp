@@ -31,7 +31,7 @@ namespace ltb::net {
 
 enum class ClientTagLabel {
     ConnectionChange,
-    Finished,
+    UnaryFinished,
 };
 
 enum class ServerTagLabel {

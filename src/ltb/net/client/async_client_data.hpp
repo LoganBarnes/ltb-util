@@ -20,30 +20,55 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ///////////////////////////////////////////////////////////////////////////////////////
-#include "async_client.hpp"
+#pragma once
 
-namespace ltb::net::detail {
+// project
+#include "ltb/net/tagger.hpp"
+#include "ltb/util/atomic_data.hpp"
 
-auto to_client_connection_state(grpc_connectivity_state const& state) -> ClientConnectionState {
-    switch (state) {
-    case GRPC_CHANNEL_IDLE:
-        return ClientConnectionState::NotConnected;
-    case GRPC_CHANNEL_CONNECTING:
-        return ClientConnectionState::AttemptingToConnect;
-    case GRPC_CHANNEL_READY:
-        return ClientConnectionState::Connected;
-    case GRPC_CHANNEL_TRANSIENT_FAILURE:
-        return ClientConnectionState::RecoveringFromFailure;
-    case GRPC_CHANNEL_SHUTDOWN:
-        return ClientConnectionState::Shutdown;
-    }
+// external
+#include <grpc++/channel.h>
+#include <grpc++/server.h>
 
-    throw std::invalid_argument("Invalid grpc_connectivity_state");
-}
+// standard
+#include <functional>
 
-auto state_notification_deadline() -> std::chrono::time_point<std::chrono::system_clock> {
-    return std::chrono::time_point<std::chrono::system_clock>::max();
-    // return std::chrono::system_clock::now() + std::chrono::seconds(60);
-}
+namespace ltb::net {
 
-} // namespace ltb::net::detail
+enum class ClientConnectionState {
+    NoHostSpecified,
+    InterprocessServerAlwaysConnected,
+    NotConnected,
+    AttemptingToConnect,
+    Connected,
+    RecoveringFromFailure,
+    Shutdown,
+};
+
+enum class CallImmediately {
+    Yes,
+    No,
+};
+
+struct AsyncClientRpcCallData {
+    virtual ~AsyncClientRpcCallData() = default;
+
+    // Context for the client. It could be used to convey extra information to
+    // the server and/or tweak certain RPC behaviors.
+    grpc::ClientContext context;
+
+    // Storage for the status of the RPC upon completion.
+    grpc::Status status;
+};
+
+template <typename Response>
+struct AsyncClientUnaryCallData : public AsyncClientRpcCallData {
+    ~AsyncClientUnaryCallData() override = default;
+
+    // Container for the data we expect from the server.
+    Response reply;
+
+    std::unique_ptr<grpc_impl::ClientAsyncResponseReader<Response>> response_reader;
+};
+
+} // namespace ltb::net
