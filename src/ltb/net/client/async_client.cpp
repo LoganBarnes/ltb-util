@@ -64,15 +64,15 @@ auto to_client_connection_state(grpc_connectivity_state const& state) -> ClientC
 }
 
 auto state_notification_deadline() {
-    //    return std::chrono::time_point<std::chrono::system_clock>::max();
-    return std::chrono::system_clock::now() + std::chrono::seconds(60);
+    return std::chrono::time_point<std::chrono::system_clock>::max();
+    // return std::chrono::system_clock::now() + std::chrono::seconds(60);
 }
 
 } // namespace
 
 AsyncClient::AsyncClient(std::string const& host_address) {
     std::lock_guard channel_lock(channel_mutex_);
-    std::cout << "C: " << host_address << std::endl;
+    // std::cout << "C: " << host_address << std::endl;
     data_.channel = grpc::CreateChannel(host_address, grpc::InsecureChannelCredentials());
 
     auto grpc_state        = data_.channel->GetState(true);
@@ -99,21 +99,19 @@ auto AsyncClient::run() -> void {
     while (completion_queue_.Next(&raw_tag, &completed_successfully)) {
         std::lock_guard channel_lock(channel_mutex_);
         auto            tag = data_.tagger.get_tag(raw_tag);
-        std::cout << (completed_successfully ? "Success: " : "Failure: ") << tag << std::endl;
+        // std::cout << "C: " << (completed_successfully ? "Success: " : "Failure: ") << tag << std::endl;
 
         switch (tag.label) {
 
         case ClientTagLabel::ConnectionChange: {
             if (completed_successfully && data_.channel) {
                 auto grpc_state = data_.channel->GetState(true);
-                //                auto state      = to_client_connection_state(grpc_state);
+                auto state      = to_client_connection_state(grpc_state);
 
-                std::cout << grpc_state << std::endl;
-
-                //                if (data_.connection_state != state && data_.state_change_callback) {
-                //                    data_.state_change_callback(state);
-                //                }
-                //                data_.connection_state = state;
+                if (data_.connection_state != state && data_.state_change_callback) {
+                    data_.state_change_callback(state);
+                }
+                data_.connection_state = state;
 
                 // Ask the channel to notify us when state changes by updating 'completion_queue_'
                 data_.channel->NotifyOnStateChange(grpc_state,

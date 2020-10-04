@@ -52,7 +52,7 @@ grpc::Status ExampleService::GetUpdates(grpc::ServerContext*           context,
 ExampleServer::ExampleServer(std::string const& host_address) {
     grpc::ServerBuilder builder;
     if (!host_address.empty()) {
-        std::cout << "S: " << host_address << std::endl;
+        // std::cout << "S: " << host_address << std::endl;
         builder.AddListeningPort(host_address, grpc::InsecureServerCredentials());
     }
     builder.RegisterService(&service_);
