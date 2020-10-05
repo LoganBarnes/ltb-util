@@ -23,12 +23,10 @@
 #pragma once
 
 // project
-#include "ltb/net/tagger.hpp"
-#include "ltb/util/atomic_data.hpp"
+#include "ltb/util/error.hpp"
 
 // external
-#include <grpc++/channel.h>
-#include <grpc++/server.h>
+#include <grpc++/client_context.h>
 
 // standard
 #include <functional>
@@ -50,8 +48,15 @@ enum class CallImmediately {
     No,
 };
 
+using StatusCallback = std::function<void(grpc::Status)>;
+using ErrorCallback  = std::function<void(ltb::util::Error)>;
+template <typename Response>
+using ResponseCallback = std::function<void(Response)>;
+
 struct AsyncClientRpcCallData {
     virtual ~AsyncClientRpcCallData() = default;
+
+    virtual auto process_callbacks() -> void = 0;
 
     // Context for the client. It could be used to convey extra information to
     // the server and/or tweak certain RPC behaviors.
@@ -59,16 +64,29 @@ struct AsyncClientRpcCallData {
 
     // Storage for the status of the RPC upon completion.
     grpc::Status status;
+
+    StatusCallback status_callback = nullptr;
+    ErrorCallback  error_callback  = nullptr;
 };
 
 template <typename Response>
 struct AsyncClientUnaryCallData : public AsyncClientRpcCallData {
     ~AsyncClientUnaryCallData() override = default;
 
-    // Container for the data we expect from the server.
-    Response reply;
+    auto process_callbacks() -> void override;
 
-    std::unique_ptr<grpc_impl::ClientAsyncResponseReader<Response>> response_reader;
+    Response response = {};
+
+    std::unique_ptr<grpc_impl::ClientAsyncResponseReader<Response>> response_reader = nullptr;
+
+    ResponseCallback<Response> response_callback = nullptr;
 };
+
+template <typename Response>
+auto AsyncClientUnaryCallData<Response>::process_callbacks() -> void {
+    if (response_callback) {
+        response_callback(response);
+    }
+}
 
 } // namespace ltb::net

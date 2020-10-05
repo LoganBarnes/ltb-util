@@ -57,8 +57,12 @@ public:
 
     auto on_state_change(StateChangeCallback callback, CallImmediately call_immediately) -> AsyncClient&;
 
-    template <typename Request, typename Response>
-    auto unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr, Request const& request) -> void;
+    template <typename Response, typename Request>
+    auto unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr,
+                   Request const&                  request,
+                   ResponseCallback<Response>      on_response = nullptr,
+                   StatusCallback                  on_status   = nullptr,
+                   ErrorCallback                   on_error    = nullptr) -> void;
 
 private:
     std::mutex            channel_mutex_;
@@ -145,7 +149,16 @@ auto AsyncClient<Service>::run() -> void {
 
         case ClientTagLabel::UnaryFinished: {
             auto call_data = static_cast<AsyncClientRpcCallData*>(tag.data);
-            // TODO: call_data.process_callbacks();
+            if (completed_successfully) {
+                call_data->process_callbacks();
+                if (call_data->status_callback) {
+                    call_data->status_callback(call_data->status);
+                }
+            } else {
+                if (call_data->error_callback) {
+                    call_data->error_callback(LTB_MAKE_ERROR("Rpc could not complete."));
+                }
+            }
             data_.rpc_call_data.erase(call_data);
         } break;
 
@@ -161,6 +174,9 @@ auto AsyncClient<Service>::run() -> void {
 template <typename Service>
 auto AsyncClient<Service>::shutdown() -> void {
     std::lock_guard channel_lock(channel_mutex_);
+    for (const auto& rpc_key_and_data : data_.rpc_call_data) {
+        rpc_key_and_data.second->context.TryCancel();
+    }
     completion_queue_.Shutdown();
     data_.stub    = nullptr;
     data_.channel = nullptr;
@@ -178,17 +194,25 @@ auto AsyncClient<Service>::on_state_change(StateChangeCallback callback, CallImm
 }
 
 template <typename Service>
-template <typename Request, typename Response>
-auto AsyncClient<Service>::unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr, Request const& request) -> void {
+template <typename Response, typename Request>
+auto AsyncClient<Service>::unary_rpc(UnaryCallPtr<Request, Response> unary_call_ptr,
+                                     Request const&                  request,
+                                     ResponseCallback<Response>      on_response,
+                                     StatusCallback                  on_status,
+                                     ErrorCallback                   on_error) -> void {
     std::lock_guard channel_lock(channel_mutex_);
 
     auto unary_call_data     = std::make_unique<AsyncClientUnaryCallData<Response>>();
     auto raw_unary_call_data = unary_call_data.get();
 
+    unary_call_data->response_callback = on_response;
+    unary_call_data->status_callback   = on_status;
+    unary_call_data->error_callback    = on_error;
+
     unary_call_data->response_reader
         = ((data_.stub.get())->*unary_call_ptr)(&unary_call_data->context, request, &completion_queue_);
 
-    unary_call_data->response_reader->Finish(&unary_call_data->reply,
+    unary_call_data->response_reader->Finish(&unary_call_data->response,
                                              &unary_call_data->status,
                                              data_.tagger.make_tag(raw_unary_call_data, ClientTagLabel::UnaryFinished));
 

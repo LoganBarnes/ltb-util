@@ -79,7 +79,17 @@ auto ExampleClient::run() -> void {
 }
 
 auto ExampleClient::dispatch_action(Action const& action) -> ExampleClient& {
-    async_client_.unary_rpc(&ChatRoom::Stub::AsyncDispatchAction, action);
+    async_client_.unary_rpc<util::Result>(
+        &ChatRoom::Stub::AsyncDispatchAction,
+        action,
+        [](util::Result result) -> void {
+            std::cout << "DispatchAction response: " << result.ShortDebugString() << std::endl;
+        },
+        [](grpc::Status status) -> void {
+            std::cout << "DispatchAction status: " << (status.ok() ? "OK" : "ERROR: " + status.error_message())
+                      << std::endl;
+        },
+        nullptr);
     return *this;
 }
 
