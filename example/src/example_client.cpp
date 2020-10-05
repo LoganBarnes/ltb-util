@@ -55,41 +55,39 @@ ExampleClient::ExampleClient(std::string const& host_address) : async_client_(ho
 ExampleClient::ExampleClient(grpc::Server& interprocess_server) : async_client_(interprocess_server) {}
 
 auto ExampleClient::run() -> void {
-    std::cout << "EC: Running..." << std::endl;
 
     async_client_.on_state_change([](auto state) { std::cout << state << std::endl; }, ltb::net::CallImmediately::Yes);
 
     std::thread run_thread([this] { async_client_.run(); });
 
-    std::cout << "EC: Running" << std::endl;
+    std::cout << "EC: Press enter to send message" << std::endl;
     std::cin.ignore();
-    std::cout << "EC: Action dispatched..." << std::endl;
+    std::cout << "EC: Sending message..." << std::endl;
 
     Action action;
     *action.mutable_send_message() = "Test message";
     dispatch_action(action);
 
-    std::cout << "EC: Action dispatched" << std::endl;
+    std::cout << "EC: Press enter to shut down" << std::endl;
     std::cin.ignore();
-    std::cout << "EC: Shutdown..." << std::endl;
+    std::cout << "EC: Shutting down..." << std::endl;
     async_client_.shutdown();
 
     std::cout << "EC: Shutdown" << std::endl;
     run_thread.join();
+    std::cout << "EC: Exit" << std::endl;
 }
 
 auto ExampleClient::dispatch_action(Action const& action) -> ExampleClient& {
     async_client_.unary_rpc<util::Result>(
         &ChatRoom::Stub::AsyncDispatchAction,
         action,
-        [](util::Result result) -> void {
-            std::cout << "DispatchAction response: " << result.ShortDebugString() << std::endl;
-        },
-        [](grpc::Status status) -> void {
+        [](util::Result result) { std::cout << "DispatchAction response: " << result.ShortDebugString() << std::endl; },
+        [](grpc::Status status) {
             std::cout << "DispatchAction status: " << (status.ok() ? "OK" : "ERROR: " + status.error_message())
                       << std::endl;
         },
-        nullptr);
+        [](ltb::util::Error error) { std::cout << "DispatchAction error: " << error.error_message() << std::endl; });
     return *this;
 }
 

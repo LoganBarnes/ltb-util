@@ -23,7 +23,7 @@ namespace ltb::example {
 ExampleService::~ExampleService() {}
 
 grpc::Status
-ExampleService::DispatchAction(grpc::ServerContext* context, Action const* request, util::Result* response) {
+ExampleService::DispatchAction(grpc::ServerContext* /*context*/, Action const* request, util::Result* response) {
     std::cout << "S: Action: " << request->ShortDebugString() << std::endl;
     response->mutable_success();
     return grpc::Status::OK;
