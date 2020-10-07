@@ -1,40 +1,23 @@
-Ltb Networking
-==============
+LTB Utilities
+=============================
 [![Travis CI][travis-badge]][travis-link]
 [![Codecov][codecov-badge]][codecov-link]
 [![MIT License][license-badge]][license-link]
 [![Docs][docs-badge]][docs-link]
 
-(Incomplete) C++ wrapper classes around [gRPC][grpc-link].
+**[Source][source-code-link]** | **[Documentation][documentation-link]**
 
-WARNING: Going through a major refactor right now. If you stumble
-across this it's probably best to just keep on moving.
+A common utilities library used for LTB projects. Contains C++ classes, 
+CMake functions, and third-party imports used frequently by other projects.
 
-### Building
-
-Requires the CMake build of gRPC 1.32.0 to be installed on the system.
-
-### Development
-
-```bash
-# All from root dir or things may break
-
-# Before all subtree commands
-git remote add -f ltb-whatev git@github.com:LoganBarnes/ltb-whatev.git
-
-# Subtree commands use form: subtree-name remote-name branch-name
-git subtree add --prefix ltb-whatev ltb-whatev master --squash
-git subtree push --prefix ltb-whatev ltb-whatev master
-git subtree pull --prefix ltb-whatev ltb-whatev master --squash
-```
-
-[travis-badge]: https://travis-ci.org/LoganBarnes/ltb-net.svg?branch=master
-[travis-link]: https://travis-ci.org/LoganBarnes/ltb-net
-[codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-net/branch/master/graph/badge.svg
-[codecov-link]: https://codecov.io/gh/LoganBarnes/ltb-net
+[travis-badge]: https://travis-ci.org/LoganBarnes/ltb-util.svg?branch=master
+[travis-link]: https://travis-ci.org/LoganBarnes/ltb-util
+[codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-util/branch/master/graph/badge.svg
+[codecov-link]: https://codecov.io/gh/LoganBarnes/ltb-util
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
-[license-link]: https://github.com/LoganBarnes/ltb-net/blob/master/LICENSE
-[docs-badge]: https://codedocs.xyz/LoganBarnes/ltb-net.svg
-[docs-link]: https://codedocs.xyz/LoganBarnes/ltb-net
+[license-link]: https://github.com/LoganBarnes/ltb-util/blob/master/LICENSE
+[docs-badge]: https://codedocs.xyz/LoganBarnes/ltb-util.svg
+[docs-link]: https://codedocs.xyz/LoganBarnes/ltb-util
 
-[grpc-link]: https://grpc.io/
+[source-code-link]: https://github.com/LoganBarnes/ltb-util
+[documentation-link]: https://codedocs.xyz/LoganBarnes/ltb-util/index.html

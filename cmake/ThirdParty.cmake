@@ -1,6 +1,6 @@
 ##########################################################################################
-# gRPC Wrapper
-# Copyright (c) 2019 Logan Barnes - All Rights Reserved
+# LTB Utilities
+# Copyright (c) 2020 Logan Barnes - All Rights Reserved
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,52 +20,93 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ##########################################################################################
+include(FetchContent)
+
+FetchContent_Declare(ltb_expected_dl
+        GIT_REPOSITORY https://github.com/TartanLlama/expected.git
+        GIT_TAG v1.0.0
+        )
+FetchContent_Declare(ltb_range_v3_dl
+        GIT_REPOSITORY https://github.com/ericniebler/range-v3.git
+        GIT_TAG 0.10.0
+        )
+FetchContent_Declare(ltb_doctest_dl
+        GIT_REPOSITORY https://github.com/onqtam/doctest.git
+        GIT_TAG 2.3.6
+        )
 
 ### Threads ###
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-### Protobuf ###
-find_package(Protobuf CONFIG REQUIRED)
-message(STATUS "Using protobuf ${Protobuf_VERSION}")
+### Expected ###
+FetchContent_GetProperties(ltb_expected_dl)
+if (NOT ltb_expected_dl_POPULATED)
+    FetchContent_Populate(ltb_expected_dl)
 
-set(_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
+    set(EXPECTED_ENABLE_TESTS OFF CACHE BOOL "" FORCE)
+    set(EXPECTED_ENABLE_DOCS OFF CACHE BOOL "" FORCE)
 
-if (${LTB_THREAD_SANITIZATION})
-    add_compile_options(${LTB_SANITIZE_THREAD_FLAG})
-    add_link_options(${LTB_SANITIZE_THREAD_FLAG})
+    # compile expected with current project
+    add_subdirectory(${ltb_expected_dl_SOURCE_DIR} ${ltb_expected_dl_BINARY_DIR} EXCLUDE_FROM_ALL)
 
-    include(FetchContent)
-    FetchContent_Declare(grpc_dl
-            GIT_REPOSITORY https://github.com/grpc/grpc
-            GIT_TAG v1.32.0
+    ltb_add_external(expected Expected)
+    target_link_libraries(ltb_external_expected
+            INTERFACE
+            expected
+            )
+endif (NOT ltb_expected_dl_POPULATED)
+
+### Range-v3 ###
+FetchContent_GetProperties(ltb_range_v3_dl)
+if (NOT ltb_range_v3_dl_POPULATED)
+    FetchContent_Populate(ltb_range_v3_dl)
+
+    set(RANGES_CXX_STD 17 CACHE INTERNAL "C++ standard version")
+
+    # compile with current project
+    add_subdirectory(${ltb_range_v3_dl_SOURCE_DIR} ${ltb_range_v3_dl_BINARY_DIR} EXCLUDE_FROM_ALL)
+
+    ltb_add_external(range_v3 RangeV3)
+    target_include_directories(ltb_external_range_v3
+            SYSTEM INTERFACE
+            $<BUILD_INTERFACE:${ltb_range_v3_dl_SOURCE_DIR}/include/>
+            )
+    target_compile_options(ltb_external_range_v3
+            INTERFACE
+            $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->
+            )
+endif (NOT ltb_range_v3_dl_POPULATED)
+
+### DocTest ###
+FetchContent_GetProperties(ltb_doctest_dl)
+if (NOT ltb_doctest_dl_POPULATED)
+    FetchContent_Populate(ltb_doctest_dl)
+
+    set(DOCTEST_WITH_TESTS OFF CACHE BOOL "" FORCE)
+    set(DOCTEST_WITH_MAIN_IN_STATIC_LIB ON CACHE BOOL "" FORCE)
+
+    # compile with current project
+    add_subdirectory(${ltb_doctest_dl_SOURCE_DIR} ${ltb_doctest_dl_BINARY_DIR} EXCLUDE_FROM_ALL)
+
+    ltb_add_external(doctest Doctest)
+    target_link_libraries(ltb_external_doctest
+            INTERFACE
+            doctest
+            )
+    ltb_add_external(doctest_with_main DoctestWithMain)
+    target_link_libraries(ltb_external_doctest_with_main
+            INTERFACE
+            doctest_with_main
             )
 
-    set(FETCHCONTENT_QUIET OFF)
-    # FetchContent_MakeAvailable(grpc_dl)
+    # add test coverage capabilities if available
+    find_program(LCOV_EXE
+            NAMES "lcov"
+            DOC "Path to lcov executable"
+            )
 
-    FetchContent_GetProperties(grpc_dl)
-    if (NOT gRPC_POPULATED)
-        FetchContent_Populate(grpc_dl)
-
-        set(gRPC_INSTALL ON CACHE INTERNAL "Generate installation target")
-
-        add_subdirectory(${grpc_dl_SOURCE_DIR} ${grpc_dl_BINARY_DIR} EXCLUDE_FROM_ALL)
-
-        # Mark headers as system headers to avoid compiler warnings
-        target_include_directories(grpc++ SYSTEM PUBLIC $<BUILD_INTERFACE:${grpc_dl_SOURCE_DIR}/include>)
+    if (LCOV_EXE AND CMAKE_COMPILER_IS_GNUCXX AND CMAKE_BUILD_TYPE MATCHES "Debug")
+        include(${CMAKE_CURRENT_LIST_DIR}/CodeCoverage.cmake)
     endif ()
-
-    message(STATUS "Using locally built gRPC")
-
-    set(_GRPC_TARGET grpc++)
-    set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
-
-else ()
-
-    ### gRPC ###
-    find_package(gRPC CONFIG REQUIRED)
-    message(STATUS "Using gRPC ${gRPC_VERSION}")
-
-    set(_GRPC_TARGET gRPC::grpc++)
-    set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
 endif ()
