@@ -3,12 +3,12 @@
 // ///////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <string>
+// standard
+#include <cstdint>
 
 namespace ltb::util {
 
-auto starts_with(std::string const& str, std::string const& prefix) -> bool;
-
-auto to_lower_ascii(std::string const& str) -> std::string;
+/// \brief The next power of 2 greater than or equal to `value`.
+auto next_power_of_2(std::uint64_t value) -> std::uint64_t;
 
 } // namespace ltb::util

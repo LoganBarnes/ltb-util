@@ -1,62 +1,112 @@
 ##########################################################################################
-# LTB Utilities
-# Copyright (c) 2020 Logan Barnes - All Rights Reserved
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# Copyright (c) 2022 Logan Barnes - All Rights Reserved
 ##########################################################################################
-cmake_minimum_required(VERSION 3.15)
-project(LtbUtilities LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.21)
+project(LtbUtil VERSION 1.0.0)
 
-include(cmake/LtbConfig.cmake) # <-- Additional project options are in here.
-include(cmake/ThirdParty.cmake)
+option(LTB_ENABLE_TESTING "Enable Testing" OFF)
 
-############
-### Util ###
-############
-file(GLOB_RECURSE LTB_SOURCE_FILES
-        LIST_DIRECTORIES false
-        CONFIGURE_DEPENDS
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/*
-        )
+#########################
+### External Packages ###
+#########################
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/CPM.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/LtbAddTarget.cmake)
 
-### Optional CUDA ###
-if (CMAKE_CUDA_COMPILER)
-    file(GLOB_RECURSE LTB_CUDA_SOURCE_FILES
-            LIST_DIRECTORIES false
-            CONFIGURE_DEPENDS
-            ${CMAKE_CURRENT_LIST_DIR}/src/ltb/cuda/*
-            )
-    list(APPEND LTB_SOURCE_FILES ${LTB_CUDA_SOURCE_FILES})
-endif ()
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
-ltb_add_library(ltb_util 17 ${LTB_SOURCE_FILES})
-ltb_link_libraries(ltb_util
-        PUBLIC
-        LtbExternal::Expected
-        LtbExternal::RangeV3
-        Threads::Threads
-        LtbExternal::Doctest
-        )
-ltb_include_directories(ltb_util
-        PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
-        "$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/generated>"
-        )
-add_library(Ltb::Util ALIAS ltb_util)
+CPMAddPackage(
+        NAME fmt
+        GIT_TAG 8.1.1
+        GITHUB_REPOSITORY fmtlib/fmt
+        OPTIONS "FMT_INSTALL YES" # create an installable target
+)
+CPMAddPackage(
+        NAME doctest
+        GIT_TAG v2.4.8
+        GITHUB_REPOSITORY doctest/doctest
+)
+CPMAddPackage(
+        NAME expected
+        GIT_TAG 96d547c03d2feab8db64c53c3744a9b4a7c8f2c5 # master
+        GITHUB_REPOSITORY TartanLlama/expected
+)
+CPMAddPackage(
+        NAME magic_enum
+        GIT_TAG v0.7.3
+        GITHUB_REPOSITORY Neargye/magic_enum
+)
 
+find_package(Threads REQUIRED)
+
+##########################
+#### LtbUtil::ltb-util ###
+##########################
+ltb_add_library(ltb-util
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/async_task_runner.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/atomic_data.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/blocking_queue.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/comparison_utils.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/container_utils.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/duration.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_bits.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_flags.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error_callback.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/file_utils.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/generic_guard.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/hash_utils.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/ignore.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/power_of_2.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/priority_tag.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/result.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/string.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/timer.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/type_string.cpp
+                # ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/uuid.cpp
+                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/variant_utils.cpp
+                )
+add_library(LtbUtil::ltb-util ALIAS ltb-util)
+ltb_target_compile_features(ltb-util PUBLIC cxx_std_17)
+ltb_target_link_libraries(ltb-util
+                          PUBLIC
+                          Threads::Threads
+                          fmt::fmt
+                          tl::expected
+                          magic_enum::magic_enum
+                          )
+ltb_target_include_directories(ltb-util
+                               PUBLIC
+                               $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
+                               $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/external>
+                               )
+add_test(NAME test-ltb-util COMMAND $<TARGET_FILE:test-ltb-util>)
+
+#packageProject(
+#        # the name of the target to export
+#        NAME ${PROJECT_NAME}
+#        # the version of the target to export
+#        VERSION ${PROJECT_VERSION}
+#        # a temporary directory to create the config files
+#        BINARY_DIR ${PROJECT_BINARY_DIR}
+#        # location of the target's public headers
+#        INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
+#        # should match the target's INSTALL_INTERFACE include directory
+#        INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
+#        # semicolon separated list of the project's dependencies
+#        DEPENDENCIES "fmt 7.1.3;cxxopts 2.2.0"
+#        # (optional) create a header containing the version info
+#        # Note: that the path to headers should be lowercase
+#        VERSION_HEADER "${PROJECT_NAME}/version.h"
+#        # (optional) create a export header using GenerateExportHeader module
+#        EXPORT_HEADER "${PROJECT_NAME}/export.h"
+#        # (optional) install your library with a namespace (Note: do NOT add extra '::')
+#        NAMESPACE ${PROJECT_NAMESPACE}
+#        # (optional) define the project's version compatibility, defaults to `AnyNewerVersion`
+#        # supported values: `AnyNewerVersion|SameMajorVersion|SameMinorVersion|ExactVersion`
+#        COMPATIBILITY AnyNewerVersion
+#        # (optional) option to disable the versioning of install destinations
+#        DISABLE_VERSION_SUFFIX YES
+#        # (optional) option to ignore target architecture for package resolution
+#        # defaults to YES for header only (i.e. INTERFACE) libraries
+#        ARCH_INDEPENDENT YES
+#)

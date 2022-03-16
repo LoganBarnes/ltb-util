@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2020 Logan Barnes - All Rights Reserved
+// Copyright (c) 2021 Logan Barnes - All Rights Reserved
 // ///////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
@@ -12,7 +12,7 @@ using Duration = std::chrono::steady_clock::duration;
 namespace detail {
 
 template <typename IntegralType, typename PeriodType>
-constexpr auto time_to_integral(const Duration& duration) -> IntegralType {
+constexpr auto time_to_integral(Duration const& duration) -> IntegralType {
     return std::chrono::duration_cast<std::chrono::duration<IntegralType, typename PeriodType::period>>(duration)
         .count();
 }
@@ -26,32 +26,32 @@ constexpr auto time_from_integral(IntegralType value) -> Duration {
 } // namespace detail
 
 template <typename TargetType = float>
-constexpr auto to_hours(const Duration& duration) -> TargetType {
+constexpr auto to_hours(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::hours>(duration);
 }
 
 template <typename TargetType = float>
-constexpr auto to_minutes(const Duration& duration) -> TargetType {
+constexpr auto to_minutes(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::minutes>(duration);
 }
 
 template <typename TargetType = float>
-constexpr auto to_seconds(const Duration& duration) -> TargetType {
+constexpr auto to_seconds(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::seconds>(duration);
 }
 
 template <typename TargetType = float>
-constexpr auto to_millis(const Duration& duration) -> TargetType {
+constexpr auto to_millis(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::milliseconds>(duration);
 }
 
 template <typename TargetType = float>
-constexpr auto to_micros(const Duration& duration) -> TargetType {
+constexpr auto to_micros(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::microseconds>(duration);
 }
 
 template <typename TargetType = float>
-constexpr auto to_nanos(const Duration& duration) -> TargetType {
+constexpr auto to_nanos(Duration const& duration) -> TargetType {
     return detail::time_to_integral<TargetType, std::chrono::nanoseconds>(duration);
 }
 
