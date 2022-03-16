@@ -19,7 +19,7 @@ function(ltb_add_executable target)
             DOCTEST_CONFIG_DISABLE
     )
 
-    if (${BUILD_TESTING})
+    if (BUILD_TESTING)
         add_executable(
                 test-${target}
                 EXCLUDE_FROM_ALL
@@ -54,7 +54,7 @@ function(ltb_add_library target)
             PRIVATE DOCTEST_CONFIG_DISABLE
     )
 
-    if (${BUILD_TESTING})
+    if (BUILD_TESTING)
         add_executable(
                 test-${target}
                 ${ARGN}
