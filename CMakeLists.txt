@@ -37,67 +37,75 @@ include(${CPM_DOWNLOAD_LOCATION})
 #########################
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/LtbAddTarget.cmake)
 
-CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
+find_package(Threads REQUIRED)
 
-CPMAddPackage(
-        NAME doctest
-        GIT_TAG v2.4.8
-        GITHUB_REPOSITORY doctest/doctest
-)
+CPMAddPackage("gh:doctest/doctest@2.4.8")
 CPMAddPackage(
         NAME expected
         GIT_TAG 96d547c03d2feab8db64c53c3744a9b4a7c8f2c5 # master
         GITHUB_REPOSITORY TartanLlama/expected
 )
-CPMAddPackage(
-        NAME magic_enum
-        GIT_TAG v0.7.3
-        GITHUB_REPOSITORY Neargye/magic_enum
-)
-
-find_package(Threads REQUIRED)
+CPMAddPackage("gh:Neargye/magic_enum@0.7.3")
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
 ##########################
 #### LtbUtil::ltb-util ###
 ##########################
-ltb_add_library(ltb-util
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/async_task_runner.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/atomic_data.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/blocking_queue.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/comparison_utils.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/container_utils.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/duration.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_bits.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_flags.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error_callback.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/file_utils.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/generic_guard.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/hash_utils.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/ignore.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/power_of_2.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/priority_tag.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/result.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/string.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/timer.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/type_string.cpp
-                # ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/uuid.cpp
-                ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/variant_utils.cpp
-                )
-add_library(LtbUtil::ltb-util ALIAS ltb-util)
-ltb_target_compile_features(ltb-util PUBLIC cxx_std_17)
-ltb_target_link_libraries(ltb-util
-                          PUBLIC
-                          Threads::Threads
-                          tl::expected
-                          magic_enum::magic_enum
-                          )
-ltb_target_include_directories(ltb-util
-                               PUBLIC
-                               $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
-                               $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/external>
-                               )
-add_test(NAME test-ltb-util COMMAND $<TARGET_FILE:test-ltb-util>)
+ltb_add_library(
+        ltb-util
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/async_task_runner.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/atomic_data.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/blocking_queue.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/comparison_utils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/container_utils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/duration.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_bits.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_flags.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error_callback.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/file_utils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/generic_guard.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/hash_utils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/ignore.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/power_of_2.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/priority_tag.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/result.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/string.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/timer.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/type_string.cpp
+        # ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/uuid.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/variant_utils.cpp
+)
+add_library(
+        LtbUtil::ltb-util
+        ALIAS
+        ltb-util
+)
+ltb_target_compile_features(
+        ltb-util
+        PRIVATE
+        cxx_std_17
+)
+ltb_target_link_libraries(
+        ltb-util
+        PUBLIC
+        Threads::Threads
+        tl::expected
+        magic_enum::magic_enum
+        PRIVATE
+        doctest::doctest
+)
+ltb_target_include_directories(
+        ltb-util
+        PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/external>
+)
+set_target_properties(
+        ltb-util
+        PROPERTIES
+        WINDOWS_EXPORT_ALL_SYMBOLS ON
+)
 
 #################
 ### Packaging ###
