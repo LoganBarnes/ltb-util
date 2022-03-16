@@ -17,8 +17,11 @@ function(ltb_add_library target)
     target_link_libraries(${target} PRIVATE doctest::doctest)
     target_compile_definitions(${target} PRIVATE DOCTEST_CONFIG_DISABLE)
     if (${LTB_ENABLE_TESTING})
-        add_executable(test-${target} ${ARGN} ${CMAKE_CURRENT_LIST_DIR}/src/ltb/test/main.cpp)
-        target_link_libraries(test-${target} PRIVATE doctest::doctest)
+        add_executable(test-${target} ${ARGN} ${LTB_TEST_MAIN})
+        target_link_libraries(test-${target} PRIVATE
+                              $<$<BOOL:${LTB_TEST_MAIN}>:doctest::doctest>
+                              $<$<NOT:$<BOOL:${LTB_TEST_MAIN}>>:doctest_with_main>
+                              )
     endif ()
 endfunction()
 
