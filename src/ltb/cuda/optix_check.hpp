@@ -44,7 +44,7 @@ namespace ltb {
 namespace optix {
 
 template <typename T>
-auto error_string(T result, char const* const func, const char* const file, int const line) -> std::string {
+auto error_string(T result, char const* const func, char const* const file, int const line) -> std::string {
     if (result != OPTIX_SUCCESS) {
         std::stringstream error_str;
         error_str << "OPTIX error at " << file << ":" << line << "\n";
@@ -56,7 +56,7 @@ auto error_string(T result, char const* const func, const char* const file, int 
 }
 
 template <typename T>
-auto check(T result, char const* const func, const char* const file, int const line) -> void {
+auto check(T result, char const* const func, char const* const file, int const line) -> void {
     auto error_message = error_string(result, func, file, line);
     if (!error_message.empty()) {
         throw std::runtime_error((error_message));
