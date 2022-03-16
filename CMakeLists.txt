@@ -15,12 +15,6 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/LtbAddTarget.cmake)
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
 CPMAddPackage(
-        NAME fmt
-        GIT_TAG 8.1.1
-        GITHUB_REPOSITORY fmtlib/fmt
-        OPTIONS "FMT_INSTALL YES" # create an installable target
-)
-CPMAddPackage(
         NAME doctest
         GIT_TAG v2.4.8
         GITHUB_REPOSITORY doctest/doctest
@@ -70,7 +64,6 @@ ltb_target_compile_features(ltb-util PUBLIC cxx_std_17)
 ltb_target_link_libraries(ltb-util
                           PUBLIC
                           Threads::Threads
-                          fmt::fmt
                           tl::expected
                           magic_enum::magic_enum
                           )
