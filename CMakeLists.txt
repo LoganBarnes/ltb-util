@@ -7,7 +7,7 @@ project(LtbUtil VERSION 1.0.0)
 ###############
 ### Options ###
 ###############
-option(LTB_ENABLE_TESTING "Enable Testing" OFF)
+option(LTB_ENABLE_TESTING "Enable LTB Testing" OFF)
 
 #############################
 ### CMake Package Manager ###
@@ -44,6 +44,7 @@ CPMAddPackage(
         NAME expected
         GIT_TAG 96d547c03d2feab8db64c53c3744a9b4a7c8f2c5 # master
         GITHUB_REPOSITORY TartanLlama/expected
+        OPTIONS "EXPECTED_BUILD_TESTS OFF"
 )
 CPMAddPackage("gh:Neargye/magic_enum@0.7.3")
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
@@ -81,11 +82,6 @@ add_library(
         ALIAS
         ltb-util
 )
-ltb_target_compile_features(
-        ltb-util
-        PRIVATE
-        cxx_std_17
-)
 ltb_target_link_libraries(
         ltb-util
         PUBLIC
@@ -101,9 +97,15 @@ ltb_target_include_directories(
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/external>
 )
+ltb_target_compile_features(
+        ltb-util
+        PRIVATE
+        cxx_std_17
+)
 set_target_properties(
         ltb-util
         PROPERTIES
+        POSITION_INDEPENDENT_CODE ON
         WINDOWS_EXPORT_ALL_SYMBOLS ON
 )
 

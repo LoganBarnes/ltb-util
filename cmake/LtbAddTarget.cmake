@@ -22,7 +22,6 @@ function(ltb_add_executable target)
     if (BUILD_TESTING)
         add_executable(
                 test-${target}
-                EXCLUDE_FROM_ALL
                 ${ARGN}
         )
         target_link_libraries(
