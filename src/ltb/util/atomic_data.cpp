@@ -100,7 +100,7 @@ TEST_CASE_TEMPLATE("[ltb][util][atomic] interleaved_atomic_data", T, short, int,
     util::AtomicData<SharedData> shared_data;
 
     // Write odd numbers
-    auto thread = std::thread([&shared_data, &max_number] {
+    auto thread = std::thread([&shared_data] {
         bool stop_loop = false;
         do {
             shared_data.wait_to_use_safely([](const SharedData& data) { return data.writing_odds; },

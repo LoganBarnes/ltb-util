@@ -132,7 +132,7 @@ TEST_CASE("[ltb][util][async_task_runner] AsyncTaskRunner runs tasks one at a ti
         return std::chrono::system_clock::now();
     };
 
-    auto start = std::chrono::system_clock::now();
+    [[maybe_unused]] auto start = std::chrono::system_clock::now();
 
     task_runner.schedule_task(task);
     task_runner.schedule_task(task);
@@ -140,7 +140,7 @@ TEST_CASE("[ltb][util][async_task_runner] AsyncTaskRunner runs tasks one at a ti
     task_runner.schedule_task(task);
     task_runner.schedule_task(task);
 
-    auto end = std::chrono::system_clock::now();
+    [[maybe_unused]] auto end = std::chrono::system_clock::now();
     CHECK(end - start < 500ms); // Tasks are run asynchronously
 
     task_runner.invoke_next_callback_blocking();
