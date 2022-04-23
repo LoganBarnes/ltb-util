@@ -50,40 +50,40 @@ CPMAddPackage("gh:Neargye/magic_enum@0.7.3")
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
 ##########################
-#### LtbUtil::ltb-util ###
+#### LtbUtil::LtbUtil ###
 ##########################
 ltb_add_library(
-        ltb-util
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/async_task_runner.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/atomic_data.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/blocking_queue.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/comparison_utils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/container_utils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/duration.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_bits.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/enum_flags.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/error_callback.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/file_utils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/generic_guard.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/hash_utils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/ignore.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/power_of_2.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/priority_tag.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/result.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/string.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/timer.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/type_string.cpp
-        # ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/uuid.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/ltb/util/variant_utils.cpp
+        LtbUtil
+        src/async_task_runner.cpp
+        src/atomic_data.cpp
+        src/blocking_queue.cpp
+        src/comparison_utils.cpp
+        src/container_utils.cpp
+        src/duration.cpp
+        src/enum_bits.cpp
+        src/enum_flags.cpp
+        src/error.cpp
+        src/error_callback.cpp
+        src/file_utils.cpp
+        src/generic_guard.cpp
+        src/hash_utils.cpp
+        src/ignore.cpp
+        src/power_of_2.cpp
+        src/priority_tag.cpp
+        src/result.cpp
+        src/string.cpp
+        src/timer.cpp
+        src/type_string.cpp
+        # src/uuid.cpp
+        src/variant_utils.cpp
 )
 add_library(
-        LtbUtil::ltb-util
+        LtbUtil::LtbUtil
         ALIAS
-        ltb-util
+        LtbUtil
 )
 ltb_target_link_libraries(
-        ltb-util
+        LtbUtil
         PUBLIC
         Threads::Threads
         tl::expected
@@ -92,20 +92,28 @@ ltb_target_link_libraries(
         doctest::doctest
 )
 ltb_target_include_directories(
-        ltb-util
+        LtbUtil
         PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
 )
 ltb_target_compile_features(
-        ltb-util
+        LtbUtil
         PRIVATE
         cxx_std_17
 )
 set_target_properties(
-        ltb-util
+        LtbUtil
         PROPERTIES
         POSITION_INDEPENDENT_CODE ON
         WINDOWS_EXPORT_ALL_SYMBOLS ON
+)
+target_compile_options(
+        LtbUtil
+        PRIVATE
+        $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/experimental:newLambdaProcessor>
 )
 
 #################

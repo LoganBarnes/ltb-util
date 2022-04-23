@@ -4,7 +4,7 @@
 #pragma once
 
 // project
-#include "ltb/util/error.hpp"
+#include "error.hpp"
 
 // standard
 #include <functional>

@@ -4,7 +4,7 @@
 #pragma once
 
 // project
-#include "ltb/util/error.hpp"
+#include "error.hpp"
 
 #if defined(LTB_EXPECTED) && defined(__GNUC__) && (__GNUC__ >= 4)
 #define CHECK_RESULT __attribute__((warn_unused))

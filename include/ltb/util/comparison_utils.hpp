@@ -8,8 +8,8 @@
 #endif
 
 #ifdef GOOGLE_COMPARISON
+#include "google/AlmostEquals.h"
 #include <cstddef> // std::size_t
-#include <google/AlmostEquals.h>
 #else
 #include <cmath>
 #include <limits>

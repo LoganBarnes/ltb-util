@@ -94,17 +94,17 @@ TEST_CASE_TEMPLATE("[ltb][util][atomic] interleaved_atomic_data", T, short, int,
         bool           writing_odds   = false;
     };
 
-    constexpr auto max_number = T(9);
+    const auto max_number = T(9);
 
     // Use AtomicData structure to update data from two threads
     util::AtomicData<SharedData> shared_data;
 
     // Write odd numbers
-    auto thread = std::thread([&shared_data] {
+    auto thread = std::thread([&shared_data, max_number] {
         bool stop_loop = false;
         do {
             shared_data.wait_to_use_safely([](const SharedData& data) { return data.writing_odds; },
-                                           [&](SharedData& data) {
+                                           [&stop_loop, max_number](SharedData& data) {
                                                data.all_data.emplace_back(data.current_number++);
                                                data.odds.emplace_back(data.all_data.back());
                                                stop_loop         = data.current_number >= max_number;
@@ -118,7 +118,7 @@ TEST_CASE_TEMPLATE("[ltb][util][atomic] interleaved_atomic_data", T, short, int,
     bool stop_loop;
     do {
         shared_data.wait_to_use_safely([](SharedData const& data) { return !data.writing_odds; },
-                                       [&](SharedData& data) {
+                                       [&stop_loop, max_number](SharedData& data) {
                                            data.all_data.emplace_back(data.current_number++);
                                            data.even.emplace_back(data.all_data.back());
                                            stop_loop         = data.current_number >= max_number;

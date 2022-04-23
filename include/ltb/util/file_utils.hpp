@@ -4,7 +4,7 @@
 #pragma once
 
 // project
-#include "ltb/util/result.hpp"
+#include "result.hpp"
 
 // standard
 #include <filesystem>
