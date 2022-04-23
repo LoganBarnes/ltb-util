@@ -33,7 +33,7 @@ public:
     /// \returns the nil uuid.
     static auto nil_id() -> Uuid;
 
-    /// \throws if `str` is not a valid uuid.
+    /// \throws std::invalid_argument if `str` is not a valid uuid.
     static auto from_string(std::string const& str) -> Uuid;
 
 private:

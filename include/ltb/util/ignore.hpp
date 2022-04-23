@@ -6,6 +6,6 @@
 namespace ltb::util {
 
 template <typename... Args>
-void ignore(Args&&...) {}
+auto ignore(Args&&...) -> void {}
 
 } // namespace ltb::util
