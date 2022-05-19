@@ -1,4 +1,4 @@
-```{include} ../README.md
+```{include} ./README.md
 :relative-images:
 ```
 
@@ -7,7 +7,7 @@
 maxdepth: 2
 caption: Contents
 ---
-api/library_root.rst
+docs/_api/library_root.rst
 ```
 
 # Indices and tables

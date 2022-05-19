@@ -1,5 +1,0 @@
-
-/* To have blue background of width of the block (instead of width of content) */
-dt.cpp {
-    background-color: var(--color-background-hover)
-}

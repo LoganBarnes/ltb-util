@@ -14,9 +14,14 @@ CMake functions, and third-party imports used frequently by other projects.
 
 https://blog.jread.com/auto-build-and-host-pretty-html-documentation-using-asciidoc-github-pages-github-actions-758a03f93d7d
 
+```bash
+sphinx-build -b html . ./docs/_build
+```
+
+
 [gh-ci-badge]: https://github.com/LoganBarnes/ltb-util/actions/workflows/cmake.yml/badge.svg
 [gh-ci-link]: https://github.com/LoganBarnes/ltb-util/actions/workflows/cmake.yml
-[codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-util/branch/master/graph/badge.svg
+[codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-util/branch/main/graph/badge.svg?token=N7fc2sWM01
 [codecov-link]: https://codecov.io/gh/LoganBarnes/ltb-util
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-link]: https://github.com/LoganBarnes/ltb-util/blob/master/LICENSE
