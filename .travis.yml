@@ -27,7 +27,7 @@ install:
 
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  - ctest -S cmake/CTestUnix.cmake
+  - ctest -S cmake/CTest.cmake
 
 after_success:
   # Upload report to CodeCov

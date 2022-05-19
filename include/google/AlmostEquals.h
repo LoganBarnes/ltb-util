@@ -37,6 +37,7 @@
 #pragma once
 
 #include <cfloat>
+#include <cstddef>
 #include <limits>
 
 // This template class serves as a compile-time function from size to

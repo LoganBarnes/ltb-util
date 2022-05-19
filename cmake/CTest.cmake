@@ -8,15 +8,13 @@ set(CTEST_BINARY_DIRECTORY "./build")
 #set(CTEST_BUILD_NAME "linux-gcc-default")
 
 set(CTEST_CMAKE_GENERATOR "Ninja Multi-Config")
-set(CTEST_BUILD_CONFIGURATION $ENV{BUILD_TYPE})
-set(CTEST_BUILD_OPTIONS "-DLTB_ENABLE_TESTING:BOOL=$ENV{BUILD_TESTS}")
+set(CTEST_BUILD_CONFIGURATION Debug)
+set(CTEST_BUILD_OPTIONS "-DLTB_ENABLE_TESTING:BOOL=ON")
 
-if ($ENV{BUILD_TESTS} AND ${CTEST_BUILD_CONFIGURATION} MATCHES Profiling)
-    set(WITH_MEMCHECK TRUE)
-    set(WITH_COVERAGE TRUE)
+set(WITH_MEMCHECK TRUE)
+set(WITH_COVERAGE TRUE)
 
-    set(ENV{CXXFLAGS} "--coverage -fprofile-arcs -ftest-coverage -fno-inline")
-endif ()
+set(ENV{CXXFLAGS} "--coverage -fprofile-arcs -ftest-coverage -fno-inline")
 
 #######################################################################
 
