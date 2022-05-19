@@ -1,13 +1,17 @@
 ##########################################################################################
 # Copyright (c) 2022 Logan Barnes - All Rights Reserved
 ##########################################################################################
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.16)
 project(LtbUtil VERSION 1.0.0)
 
 ###############
 ### Options ###
 ###############
 option(LTB_ENABLE_TESTING "Enable LTB Testing" OFF)
+
+if (LTB_ENABLE_TESTING AND NOT BUILD_TESTING)
+    include(CTest)
+endif ()
 
 #############################
 ### CMake Package Manager ###
