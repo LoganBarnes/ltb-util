@@ -27,7 +27,7 @@ TEST_CASE("[ltb][util][atomic] atomic_data_wait_timeout") {
 
     // Sleep for 2 seconds then notify the main thread
     std::thread thread([&] {
-        std::this_thread::sleep_for(2s);
+        std::this_thread::sleep_for(1s);
         shared_data.use_safely([](auto& data) { data.stop_waiting = true; });
         shared_data.notify_one();
     });
@@ -61,7 +61,7 @@ TEST_CASE("[ltb][util][atomic] atomic_data_notify_all") {
     };
     util::AtomicData<SharedData> shared_data;
 
-    std::array<std::thread, 500> threads;
+    std::array<std::thread, 50> threads;
 
     // Wait for 'notify_all' from the main thread then safely increment 'num_threads' once per thread
     for (auto& thread : threads) {

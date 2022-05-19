@@ -12,6 +12,7 @@ function(ltb_add_executable target)
             PRIVATE
             doctest::doctest
             $<TARGET_NAME_IF_EXISTS:ltb-dev-settings>
+            $<$<BOOL:${LTB_LINK_GCOV}>:gcov>
     )
     target_compile_definitions(
             ${target}
@@ -47,6 +48,7 @@ function(ltb_add_library target)
             PRIVATE
             doctest::doctest
             $<TARGET_NAME_IF_EXISTS:ltb-dev-settings>
+            $<$<BOOL:${LTB_LINK_GCOV}>:gcov>
     )
     target_compile_definitions(
             ${target}
