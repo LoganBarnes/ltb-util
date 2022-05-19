@@ -77,5 +77,3 @@ jobs:
 
       - name: Upload
         uses: codecov/codecov-action@v2
-        with:
-          files: ${{github.workspace}}/build/Testing/CoverageInfo/*.gcov
