@@ -1,0 +1,14 @@
+.. _exhale_define_error_8hpp_1a710103504cc979878810f07db4fcc2fc:
+
+Define LTB_MAKE_WARNING
+=======================
+
+- Defined in :ref:`file_include_ltb_util_error.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LTB_MAKE_WARNING
+   :project: ltb

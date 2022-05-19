@@ -1,0 +1,100 @@
+
+.. _program_listing_file_include_ltb_util_duration.hpp:
+
+Program Listing for File duration.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_duration.hpp>` (``include/ltb/util/duration.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   #include <chrono>
+   
+   namespace ltb::util {
+   
+   using Duration = std::chrono::steady_clock::duration;
+   
+   namespace detail {
+   
+   template <typename IntegralType, typename PeriodType>
+   constexpr auto time_to_integral(Duration const& duration) -> IntegralType {
+       return std::chrono::duration_cast<std::chrono::duration<IntegralType, typename PeriodType::period>>(duration)
+           .count();
+   }
+   
+   template <typename PeriodType, typename IntegralType>
+   constexpr auto time_from_integral(IntegralType value) -> Duration {
+       return std::chrono::duration_cast<Duration>(
+           std::chrono::duration<IntegralType, typename PeriodType::period>(value));
+   }
+   
+   } // namespace detail
+   
+   template <typename TargetType = float>
+   constexpr auto to_hours(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::hours>(duration);
+   }
+   
+   template <typename TargetType = float>
+   constexpr auto to_minutes(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::minutes>(duration);
+   }
+   
+   template <typename TargetType = float>
+   constexpr auto to_seconds(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::seconds>(duration);
+   }
+   
+   template <typename TargetType = float>
+   constexpr auto to_millis(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::milliseconds>(duration);
+   }
+   
+   template <typename TargetType = float>
+   constexpr auto to_micros(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::microseconds>(duration);
+   }
+   
+   template <typename TargetType = float>
+   constexpr auto to_nanos(Duration const& duration) -> TargetType {
+       return detail::time_to_integral<TargetType, std::chrono::nanoseconds>(duration);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_hours(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::hours>(value);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_minutes(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::minutes>(value);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_seconds(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::seconds>(value);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_millis(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::milliseconds>(value);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_micros(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::microseconds>(value);
+   }
+   
+   template <typename Input>
+   constexpr auto duration_nanos(Input value) -> Duration {
+       return detail::time_from_integral<std::chrono::nanoseconds>(value);
+   }
+   
+   } // namespace ltb::util

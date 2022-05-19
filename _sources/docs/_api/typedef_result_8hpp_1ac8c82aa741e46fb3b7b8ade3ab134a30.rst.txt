@@ -1,0 +1,14 @@
+.. _exhale_typedef_result_8hpp_1ac8c82aa741e46fb3b7b8ade3ab134a30:
+
+Typedef ltb::util::Result
+=========================
+
+- Defined in :ref:`file_include_ltb_util_result.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ltb::util::Result
+   :project: ltb

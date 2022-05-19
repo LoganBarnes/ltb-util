@@ -1,0 +1,49 @@
+
+.. _program_listing_file_include_ltb_util_enum_bits.hpp:
+
+Program Listing for File enum_bits.hpp
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_enum_bits.hpp>` (``include/ltb/util/enum_bits.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2020 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   #include <type_traits>
+   
+   namespace ltb::util {
+   
+   template <typename Enum>
+   constexpr auto to_bits(Enum type) -> typename std::underlying_type<Enum>::type {
+       using BitType = typename std::underlying_type<Enum>::type;
+       return BitType(1) << static_cast<BitType>(type);
+   }
+   
+   template <typename Enum, typename... Enums>
+   constexpr auto to_bits(Enum type, Enums... types) -> typename std::underlying_type<Enum>::type {
+       return to_bits<Enum>(type) | to_bits<Enum>(types...);
+   }
+   
+   template <typename Enum>
+   constexpr auto toggle_flag(const typename std::underlying_type<Enum>::type& flags, Enum flag) ->
+       typename std::underlying_type<Enum>::type {
+       return flags ^ to_bits(flag);
+   }
+   
+   template <typename Enum>
+   constexpr auto has_flag(const typename std::underlying_type<Enum>::type& flags, Enum flag) -> bool {
+       return static_cast<bool>(flags & to_bits(flag));
+   }
+   
+   template <typename Enum>
+   constexpr auto all_bits() -> typename std::underlying_type<Enum>::type {
+       return ~(typename std::underlying_type<Enum>::type(0));
+   }
+   
+   } // namespace ltb::util

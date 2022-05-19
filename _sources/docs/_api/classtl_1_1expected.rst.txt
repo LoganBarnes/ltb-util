@@ -1,0 +1,17 @@
+.. _exhale_class_classtl_1_1expected:
+
+Template Class expected
+=======================
+
+- Defined in :ref:`file_include_ltb_util_result.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: tl::expected
+   :project: ltb
+   :members:
+   :protected-members:
+   :undoc-members:

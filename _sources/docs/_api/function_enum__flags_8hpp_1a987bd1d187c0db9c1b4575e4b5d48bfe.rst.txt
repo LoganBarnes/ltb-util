@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1a987bd1d187c0db9c1b4575e4b5d48bfe:
+
+Template Function ltb::util::to_bits(E)
+=======================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::to_bits(E)
+   :project: ltb

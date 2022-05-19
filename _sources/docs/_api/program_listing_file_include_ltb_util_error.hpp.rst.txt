@@ -1,0 +1,92 @@
+
+.. _program_listing_file_include_ltb_util_error.hpp:
+
+Program Listing for File error.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_error.hpp>` (``include/ltb/util/error.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   assert(error.severity() == ltb::util::Error::Severity::Error);
+   assert(error.severity() == ltb::util::Error::Severity::Warning);
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   // standard
+   #include <filesystem>
+   #include <string>
+   
+   #define LTB_MAKE_ERROR(msg) ::ltb::util::Error({__FILE__, __LINE__}, ::ltb::util::Error::Severity::Error, msg)
+   
+   #define LTB_MAKE_WARNING(msg) ::ltb::util::Error({__FILE__, __LINE__}, ::ltb::util::Error::Severity::Warning, msg)
+   
+   namespace ltb::util {
+   
+   struct SourceLocation {
+       std::filesystem::path filename;
+       int                   line_number;
+   
+       SourceLocation() = delete;
+       SourceLocation(std::filesystem::path file, int line);
+   };
+   
+   class Error {
+   public:
+       enum class Severity {
+           Error,
+           Warning,
+       };
+   
+       Error() = delete;
+       explicit Error(SourceLocation source_location, Severity severity, std::string error_message);
+       virtual ~Error();
+   
+       // default copy
+       Error(Error const&) = default;
+       auto operator=(Error const&) -> Error& = default;
+   
+       // default move
+       Error(Error&&) noexcept = default;
+       auto operator=(Error&&) noexcept -> Error& = default;
+   
+       [[nodiscard]] auto severity() const -> Severity const&;
+       [[nodiscard]] auto error_message() const -> std::string const&;
+       [[nodiscard]] auto debug_error_message() const -> std::string const&;
+       [[nodiscard]] auto source_location() const -> SourceLocation const&;
+   
+       static auto append_message(Error const& error, std::string const& message) -> Error;
+   
+       auto operator==(Error const& other) const -> bool;
+       auto operator!=(Error const& other) const -> bool;
+   
+   private:
+       SourceLocation source_location_; 
+       Severity       severity_; 
+       std::string    error_message_; 
+       std::string    debug_message_; 
+   };
+   
+   template <typename Context>
+   struct ContextError {
+       Error   error;
+       Context context;
+   
+       [[nodiscard]] auto severity() const -> Error::Severity const& { return error.severity(); }
+       [[nodiscard]] auto error_message() const -> std::string const& { return error.error_message(); }
+       [[nodiscard]] auto debug_error_message() const -> std::string const& { return error.debug_error_message(); }
+       [[nodiscard]] auto source_location() const -> SourceLocation const& { return error.source_location(); }
+   
+       ContextError(Error err, Context ctx) : error(std::move(err)), context(std::move(ctx)) {}
+   };
+   
+   template <typename Context>
+   auto make_context_error(Error error, Context context) -> ContextError<Context> {
+       return {std::move(error), std::move(context)};
+   }
+   
+   } // namespace ltb::util

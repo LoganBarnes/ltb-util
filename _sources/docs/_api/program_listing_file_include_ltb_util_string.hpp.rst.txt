@@ -1,0 +1,26 @@
+
+.. _program_listing_file_include_ltb_util_string.hpp:
+
+Program Listing for File string.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_string.hpp>` (``include/ltb/util/string.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   #include <string>
+   
+   namespace ltb::util {
+   
+   auto starts_with(std::string const& str, std::string const& prefix) -> bool;
+   
+   auto to_lower_ascii(std::string const& str) -> std::string;
+   
+   } // namespace ltb::util

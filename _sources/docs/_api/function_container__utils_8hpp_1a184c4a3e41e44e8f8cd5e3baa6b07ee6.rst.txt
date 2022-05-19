@@ -1,0 +1,14 @@
+.. _exhale_function_container__utils_8hpp_1a184c4a3e41e44e8f8cd5e3baa6b07ee6:
+
+Template Function ltb::util::remove_all_by_predicate
+====================================================
+
+- Defined in :ref:`file_include_ltb_util_container_utils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::remove_all_by_predicate(V&, Pred&&)
+   :project: ltb

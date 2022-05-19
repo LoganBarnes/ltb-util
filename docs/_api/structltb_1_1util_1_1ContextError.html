@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Struct ContextError &mdash; LTB Util 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Template Struct Flags" href="structltb_1_1util_1_1Flags.html" />
+    <link rel="prev" title="Struct AsyncTaskRunner::TaskToDo" href="structltb_1_1util_1_1AsyncTaskRunner_1_1TaskToDo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> LTB Util
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1AsyncTaskRunner_1_1FinishedTask.html">Struct AsyncTaskRunner::FinishedTask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1AsyncTaskRunner_1_1TaskToDo.html">Struct AsyncTaskRunner::TaskToDo</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Template Struct ContextError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1Flags.html">Template Struct Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1PriorityTag.html">Template Struct PriorityTag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1PriorityTag_3_010_01_4.html">Template Struct PriorityTag&lt; 0 &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1ScopedLock.html">Struct ScopedLock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1SourceLocation.html">Struct SourceLocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1Visitor.html">Template Struct Visitor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structstd_1_1hash_3_01ltb_1_1util_1_1MultiUuid_3_01T_01_4_01_4.html">Template Struct hash&lt; ltb::util::MultiUuid&lt; T &gt; &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structstd_1_1hash_3_01ltb_1_1util_1_1Uuid_3_01T_01_4_01_4.html">Template Struct hash&lt; ltb::util::Uuid&lt; T &gt; &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1AsyncTaskRunner.html">Template Class AsyncTaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1AtomicData.html">Template Class AtomicData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1BlockingQueue.html">Template Class BlockingQueue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Error.html">Class Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1GenericGuard.html">Template Class GenericGuard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1MultiUuid.html">Template Class MultiUuid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1ScopedTimer.html">Class ScopedTimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Timer.html">Class Timer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Uuid.html">Template Class Uuid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1UuidGenerator.html">Class UuidGenerator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classtl_1_1expected.html">Template Class expected</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">LTB Util</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="library_root.html">APIs</a> &raquo;</li>
+      <li>Template Struct ContextError</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/_api/structltb_1_1util_1_1ContextError.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-struct-contexterror">
+<span id="exhale-struct-structltb-1-1util-1-1contexterror"></span><h1>Template Struct ContextError<a class="headerlink" href="#template-struct-contexterror" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_ltb_util_error.hpp.html#file-include-ltb-util-error-hpp"><span class="std std-ref">File error.hpp</span></a></p></li>
+</ul>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN3ltb4util12ContextErrorE">
+<span id="_CPPv3I0EN3ltb4util12ContextErrorE"></span><span id="_CPPv2I0EN3ltb4util12ContextErrorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Context</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structltb_1_1util_1_1ContextError"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">ltb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">ContextError</span></span></span><a class="headerlink" href="#_CPPv4I0EN3ltb4util12ContextErrorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An error with extra data pertaining to a specific type of error. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3ltb4util12ContextError8severityEv">
+<span id="_CPPv3NK3ltb4util12ContextError8severityEv"></span><span id="_CPPv2NK3ltb4util12ContextError8severityEv"></span><span id="ltb::util::ContextError::severityC"></span><span class="target" id="structltb_1_1util_1_1ContextError_1a7ca08547c688c5c9a28921ec2ba17b79"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">severity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="classltb_1_1util_1_1Error.html#_CPPv4N3ltb4util5ErrorE" title="ltb::util::Error"><span class="n"><span class="pre">Error</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classltb_1_1util_1_1Error.html#_CPPv4N3ltb4util5Error8SeverityE" title="ltb::util::Error::Severity"><span class="n"><span class="pre">Severity</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4NK3ltb4util12ContextError8severityEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3ltb4util12ContextError13error_messageEv">
+<span id="_CPPv3NK3ltb4util12ContextError13error_messageEv"></span><span id="_CPPv2NK3ltb4util12ContextError13error_messageEv"></span><span id="ltb::util::ContextError::error_messageC"></span><span class="target" id="structltb_1_1util_1_1ContextError_1a1b3a35ef3d333f28c20ea62a8f0b3a9e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error_message</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4NK3ltb4util12ContextError13error_messageEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3ltb4util12ContextError19debug_error_messageEv">
+<span id="_CPPv3NK3ltb4util12ContextError19debug_error_messageEv"></span><span id="_CPPv2NK3ltb4util12ContextError19debug_error_messageEv"></span><span id="ltb::util::ContextError::debug_error_messageC"></span><span class="target" id="structltb_1_1util_1_1ContextError_1aaac78895e706a540eb66a7960176a4f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">debug_error_message</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4NK3ltb4util12ContextError19debug_error_messageEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3ltb4util12ContextError15source_locationEv">
+<span id="_CPPv3NK3ltb4util12ContextError15source_locationEv"></span><span id="_CPPv2NK3ltb4util12ContextError15source_locationEv"></span><span id="ltb::util::ContextError::source_locationC"></span><span class="target" id="structltb_1_1util_1_1ContextError_1a74f517a60b5332977071a14e2756a8ce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">source_location</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="structltb_1_1util_1_1SourceLocation.html#_CPPv4N3ltb4util14SourceLocationE" title="ltb::util::SourceLocation"><span class="n"><span class="pre">SourceLocation</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4NK3ltb4util12ContextError15source_locationEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util12ContextError12ContextErrorE5Error7Context">
+<span id="_CPPv3N3ltb4util12ContextError12ContextErrorE5Error7Context"></span><span id="_CPPv2N3ltb4util12ContextError12ContextErrorE5Error7Context"></span><span id="ltb::util::ContextError::ContextError__Error.Context"></span><span class="target" id="structltb_1_1util_1_1ContextError_1a246be97505479ab769029c439fa7a2cf"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContextError</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classltb_1_1util_1_1Error.html#_CPPv4N3ltb4util5ErrorE" title="ltb::util::Error"><span class="n"><span class="pre">Error</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">err</span></span>, <a class="reference internal" href="#_CPPv4I0EN3ltb4util12ContextErrorE" title="ltb::util::ContextError::Context"><span class="n"><span class="pre">Context</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3ltb4util12ContextError12ContextErrorE5Error7Context" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util12ContextError5errorE">
+<span id="_CPPv3N3ltb4util12ContextError5errorE"></span><span id="_CPPv2N3ltb4util12ContextError5errorE"></span><span id="ltb::util::ContextError::error__Error"></span><span class="target" id="structltb_1_1util_1_1ContextError_1af7cb8f6fb43e556ee0177469d66633ba"></span><a class="reference internal" href="classltb_1_1util_1_1Error.html#_CPPv4N3ltb4util5ErrorE" title="ltb::util::Error"><span class="n"><span class="pre">Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error</span></span></span><a class="headerlink" href="#_CPPv4N3ltb4util12ContextError5errorE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util12ContextError7contextE">
+<span id="_CPPv3N3ltb4util12ContextError7contextE"></span><span id="_CPPv2N3ltb4util12ContextError7contextE"></span><span id="ltb::util::ContextError::context__Context"></span><span class="target" id="structltb_1_1util_1_1ContextError_1a3dc2624478bbf38bd02f6922283073a8"></span><a class="reference internal" href="#_CPPv4I0EN3ltb4util12ContextErrorE" title="ltb::util::ContextError::Context"><span class="n"><span class="pre">Context</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">context</span></span></span><a class="headerlink" href="#_CPPv4N3ltb4util12ContextError7contextE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structltb_1_1util_1_1AsyncTaskRunner_1_1TaskToDo.html" class="btn btn-neutral float-left" title="Struct AsyncTaskRunner::TaskToDo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structltb_1_1util_1_1Flags.html" class="btn btn-neutral float-right" title="Template Struct Flags" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Logan Barnes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

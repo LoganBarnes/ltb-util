@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1ace9d9c2d1186023e85c0027c1d61ed0a:
+
+Template Function ltb::util::make_flags(E)
+==========================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::make_flags(E)
+   :project: ltb

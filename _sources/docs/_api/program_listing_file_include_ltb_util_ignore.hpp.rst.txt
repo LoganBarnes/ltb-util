@@ -1,0 +1,23 @@
+
+.. _program_listing_file_include_ltb_util_ignore.hpp:
+
+Program Listing for File ignore.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_ignore.hpp>` (``include/ltb/util/ignore.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   namespace ltb::util {
+   
+   template <typename... Args>
+   auto ignore(Args&&...) -> void {}
+   
+   } // namespace ltb::util

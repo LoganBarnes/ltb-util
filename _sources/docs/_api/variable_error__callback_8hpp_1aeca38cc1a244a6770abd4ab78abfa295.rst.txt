@@ -1,0 +1,14 @@
+.. _exhale_variable_error__callback_8hpp_1aeca38cc1a244a6770abd4ab78abfa295:
+
+Variable ltb::util::ignore_errors
+=================================
+
+- Defined in :ref:`file_include_ltb_util_error_callback.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ltb::util::ignore_errors
+   :project: ltb

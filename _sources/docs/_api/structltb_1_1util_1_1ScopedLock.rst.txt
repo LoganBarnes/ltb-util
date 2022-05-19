@@ -1,0 +1,17 @@
+.. _exhale_struct_structltb_1_1util_1_1ScopedLock:
+
+Struct ScopedLock
+=================
+
+- Defined in :ref:`file_include_ltb_util_atomic_data.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: ltb::util::ScopedLock
+   :project: ltb
+   :members:
+   :protected-members:
+   :undoc-members:

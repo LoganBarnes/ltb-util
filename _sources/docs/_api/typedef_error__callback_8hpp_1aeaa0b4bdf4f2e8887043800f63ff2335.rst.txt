@@ -1,0 +1,14 @@
+.. _exhale_typedef_error__callback_8hpp_1aeaa0b4bdf4f2e8887043800f63ff2335:
+
+Typedef ltb::util::ErrorCallback
+================================
+
+- Defined in :ref:`file_include_ltb_util_error_callback.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ltb::util::ErrorCallback
+   :project: ltb

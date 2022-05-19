@@ -1,0 +1,14 @@
+.. _exhale_typedef_duration_8hpp_1abc0ba108ea35384ba9bac2d005ec8270:
+
+Typedef ltb::util::Duration
+===========================
+
+- Defined in :ref:`file_include_ltb_util_duration.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ltb::util::Duration
+   :project: ltb

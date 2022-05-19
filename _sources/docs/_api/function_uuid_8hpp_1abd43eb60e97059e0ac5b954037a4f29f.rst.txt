@@ -1,0 +1,14 @@
+.. _exhale_function_uuid_8hpp_1abd43eb60e97059e0ac5b954037a4f29f:
+
+Template Function ltb::util::operator<(MultiUuid<Ts...> const&, MultiUuid<Ts...> const&)
+========================================================================================
+
+- Defined in :ref:`file_include_ltb_util_uuid.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::operator<(MultiUuid<Ts...> const&, MultiUuid<Ts...> const&)
+   :project: ltb

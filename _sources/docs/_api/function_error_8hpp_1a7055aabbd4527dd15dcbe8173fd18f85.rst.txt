@@ -1,0 +1,14 @@
+.. _exhale_function_error_8hpp_1a7055aabbd4527dd15dcbe8173fd18f85:
+
+Template Function ltb::util::make_context_error
+===============================================
+
+- Defined in :ref:`file_include_ltb_util_error.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::make_context_error(Error, Context)
+   :project: ltb

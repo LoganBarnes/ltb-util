@@ -1,0 +1,14 @@
+.. _exhale_function_error__callback_8hpp_1a58b426ab9781be49f6630a6502494d65:
+
+Function ltb::util::invoke_if_non_null
+======================================
+
+- Defined in :ref:`file_include_ltb_util_error_callback.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::invoke_if_non_null(ErrorCallback const&, Error)
+   :project: ltb

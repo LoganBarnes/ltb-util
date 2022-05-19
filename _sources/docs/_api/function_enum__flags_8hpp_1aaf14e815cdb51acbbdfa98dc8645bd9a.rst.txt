@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1aaf14e815cdb51acbbdfa98dc8645bd9a:
+
+Template Function ltb::util::flag_operators::operator|(E, Flags<E>)
+===================================================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::flag_operators::operator|(E, Flags<E>)
+   :project: ltb

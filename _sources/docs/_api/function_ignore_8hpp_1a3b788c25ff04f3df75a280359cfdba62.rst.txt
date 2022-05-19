@@ -1,0 +1,14 @@
+.. _exhale_function_ignore_8hpp_1a3b788c25ff04f3df75a280359cfdba62:
+
+Template Function ltb::util::ignore
+===================================
+
+- Defined in :ref:`file_include_ltb_util_ignore.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::ignore(Args&&)
+   :project: ltb

@@ -1,0 +1,14 @@
+.. _exhale_typedef_blocking__queue_8hpp_1aaa08f16d1122bca0b9d3bc563ace39e9:
+
+Typedef ltb::util::NotifyCallback
+=================================
+
+- Defined in :ref:`file_include_ltb_util_blocking_queue.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ltb::util::NotifyCallback
+   :project: ltb

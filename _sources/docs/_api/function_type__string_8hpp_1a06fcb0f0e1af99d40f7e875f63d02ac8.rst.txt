@@ -1,0 +1,14 @@
+.. _exhale_function_type__string_8hpp_1a06fcb0f0e1af99d40f7e875f63d02ac8:
+
+Function ltb::util::detail::demangle
+====================================
+
+- Defined in :ref:`file_include_ltb_util_type_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::detail::demangle(char const *)
+   :project: ltb

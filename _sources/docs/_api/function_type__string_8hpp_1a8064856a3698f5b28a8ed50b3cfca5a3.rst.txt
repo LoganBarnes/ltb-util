@@ -1,0 +1,14 @@
+.. _exhale_function_type__string_8hpp_1a8064856a3698f5b28a8ed50b3cfca5a3:
+
+Template Function ltb::util::type_string(const T&)
+==================================================
+
+- Defined in :ref:`file_include_ltb_util_type_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::type_string(const T&)
+   :project: ltb

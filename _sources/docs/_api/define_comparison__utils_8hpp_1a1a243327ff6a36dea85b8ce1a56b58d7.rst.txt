@@ -1,0 +1,14 @@
+.. _exhale_define_comparison__utils_8hpp_1a1a243327ff6a36dea85b8ce1a56b58d7:
+
+Define GOOGLE_COMPARISON
+========================
+
+- Defined in :ref:`file_include_ltb_util_comparison_utils.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GOOGLE_COMPARISON
+   :project: ltb

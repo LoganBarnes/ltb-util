@@ -1,0 +1,14 @@
+.. _exhale_function_duration_8hpp_1a082581642eedc50d259beece531f352c:
+
+Template Function ltb::util::duration_minutes
+=============================================
+
+- Defined in :ref:`file_include_ltb_util_duration.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::duration_minutes(Input)
+   :project: ltb

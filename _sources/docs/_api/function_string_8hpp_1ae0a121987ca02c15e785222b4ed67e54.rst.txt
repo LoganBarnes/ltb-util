@@ -1,0 +1,14 @@
+.. _exhale_function_string_8hpp_1ae0a121987ca02c15e785222b4ed67e54:
+
+Function ltb::util::starts_with
+===============================
+
+- Defined in :ref:`file_include_ltb_util_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::starts_with(std::string const&, std::string const&)
+   :project: ltb

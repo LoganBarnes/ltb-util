@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1a6af8090ce9586d1286944503b5fb8086:
+
+Template Function ltb::util::add_flag
+=====================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::add_flag(Flags<E>, E)
+   :project: ltb

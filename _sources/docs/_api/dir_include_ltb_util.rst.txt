@@ -1,0 +1,41 @@
+.. _dir_include_ltb_util:
+
+
+Directory util
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ltb>` (``include/ltb``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/ltb/util``
+
+
+Files
+-----
+
+- :ref:`file_include_ltb_util_async_task_runner.hpp`
+- :ref:`file_include_ltb_util_atomic_data.hpp`
+- :ref:`file_include_ltb_util_blocking_queue.hpp`
+- :ref:`file_include_ltb_util_comparison_utils.hpp`
+- :ref:`file_include_ltb_util_container_utils.hpp`
+- :ref:`file_include_ltb_util_duration.hpp`
+- :ref:`file_include_ltb_util_enum_bits.hpp`
+- :ref:`file_include_ltb_util_enum_flags.hpp`
+- :ref:`file_include_ltb_util_error.hpp`
+- :ref:`file_include_ltb_util_error_callback.hpp`
+- :ref:`file_include_ltb_util_file_utils.hpp`
+- :ref:`file_include_ltb_util_generic_guard.hpp`
+- :ref:`file_include_ltb_util_hash_utils.hpp`
+- :ref:`file_include_ltb_util_ignore.hpp`
+- :ref:`file_include_ltb_util_power_of_2.hpp`
+- :ref:`file_include_ltb_util_priority_tag.hpp`
+- :ref:`file_include_ltb_util_result.hpp`
+- :ref:`file_include_ltb_util_string.hpp`
+- :ref:`file_include_ltb_util_timer.hpp`
+- :ref:`file_include_ltb_util_type_string.hpp`
+- :ref:`file_include_ltb_util_uuid.hpp`
+- :ref:`file_include_ltb_util_variant_utils.hpp`
+
+

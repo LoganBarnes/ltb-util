@@ -1,0 +1,14 @@
+.. _exhale_function_variant__utils_8hpp_1aa59f46c67f50b28244fbe4f16679b918:
+
+Template Function ltb::util::visit(Visitor&&, std::variant<Ts...>&)
+===================================================================
+
+- Defined in :ref:`file_include_ltb_util_variant_utils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::visit(Visitor&&, std::variant<Ts...>&)
+   :project: ltb

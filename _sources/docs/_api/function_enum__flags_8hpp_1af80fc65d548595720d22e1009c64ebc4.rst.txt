@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1af80fc65d548595720d22e1009c64ebc4:
+
+Template Function ltb::util::from_underlying
+============================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::from_underlying(std::underlying_type_t<E> const&)
+   :project: ltb

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class BlockingQueue &mdash; LTB Util 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Class Error" href="classltb_1_1util_1_1Error.html" />
+    <link rel="prev" title="Template Class AtomicData" href="classltb_1_1util_1_1AtomicData.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> LTB Util
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1AsyncTaskRunner_1_1FinishedTask.html">Struct AsyncTaskRunner::FinishedTask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1AsyncTaskRunner_1_1TaskToDo.html">Struct AsyncTaskRunner::TaskToDo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1ContextError.html">Template Struct ContextError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1Flags.html">Template Struct Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1PriorityTag.html">Template Struct PriorityTag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1PriorityTag_3_010_01_4.html">Template Struct PriorityTag&lt; 0 &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1ScopedLock.html">Struct ScopedLock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1SourceLocation.html">Struct SourceLocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structltb_1_1util_1_1Visitor.html">Template Struct Visitor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structstd_1_1hash_3_01ltb_1_1util_1_1MultiUuid_3_01T_01_4_01_4.html">Template Struct hash&lt; ltb::util::MultiUuid&lt; T &gt; &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structstd_1_1hash_3_01ltb_1_1util_1_1Uuid_3_01T_01_4_01_4.html">Template Struct hash&lt; ltb::util::Uuid&lt; T &gt; &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1AsyncTaskRunner.html">Template Class AsyncTaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1AtomicData.html">Template Class AtomicData</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Template Class BlockingQueue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Error.html">Class Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1GenericGuard.html">Template Class GenericGuard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1MultiUuid.html">Template Class MultiUuid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1ScopedTimer.html">Class ScopedTimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Timer.html">Class Timer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1Uuid.html">Template Class Uuid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classltb_1_1util_1_1UuidGenerator.html">Class UuidGenerator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classtl_1_1expected.html">Template Class expected</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">LTB Util</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="library_root.html">APIs</a> &raquo;</li>
+      <li>Template Class BlockingQueue</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/_api/classltb_1_1util_1_1BlockingQueue.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-blockingqueue">
+<span id="exhale-class-classltb-1-1util-1-1blockingqueue"></span><h1>Template Class BlockingQueue<a class="headerlink" href="#template-class-blockingqueue" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_ltb_util_blocking_queue.hpp.html#file-include-ltb-util-blocking-queue-hpp"><span class="std std-ref">File blocking_queue.hpp</span></a></p></li>
+</ul>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN3ltb4util13BlockingQueueE">
+<span id="_CPPv3I0EN3ltb4util13BlockingQueueE"></span><span id="_CPPv2I0EN3ltb4util13BlockingQueueE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classltb_1_1util_1_1BlockingQueue"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">ltb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">BlockingQueue</span></span></span><a class="headerlink" href="#_CPPv4I0EN3ltb4util13BlockingQueueE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Thread-safe queue implementation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue13BlockingQueueE14NotifyCallback">
+<span id="_CPPv3N3ltb4util13BlockingQueue13BlockingQueueE14NotifyCallback"></span><span id="_CPPv2N3ltb4util13BlockingQueue13BlockingQueueE14NotifyCallback"></span><span id="ltb::util::BlockingQueue::BlockingQueue__NotifyCallback"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1acbe03a8c884ca62d571fc9e1d1be45da"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BlockingQueue</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="typedef_blocking__queue_8hpp_1aaa08f16d1122bca0b9d3bc563ace39e9.html#_CPPv4N3ltb4util14NotifyCallbackE" title="ltb::util::NotifyCallback"><span class="n"><span class="pre">NotifyCallback</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">notify_callback</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue13BlockingQueueE14NotifyCallback" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Creates a <a class="reference internal" href="#classltb_1_1util_1_1BlockingQueue"><span class="std std-ref">BlockingQueue</span></a> and sets the optional <code class="docutils literal notranslate"><span class="pre">notify_callback</span></code> </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notify_callback</strong> – - An optional callback that gets called every time an item is added to the queue. This is not necessarily called in the order that items are added to the queue if items are added from multiple threads. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue9push_backE1T">
+<span id="_CPPv3N3ltb4util13BlockingQueue9push_backE1T"></span><span id="_CPPv2N3ltb4util13BlockingQueue9push_backE1T"></span><span id="ltb::util::BlockingQueue::push_back__T"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1a113442c8cd60fef788a372ea60db09d3"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_back</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN3ltb4util13BlockingQueueE" title="ltb::util::BlockingQueue::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue9push_backE1T" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN3ltb4util13BlockingQueue12emplace_backEvDpRR4Args">
+<span id="_CPPv3IDpEN3ltb4util13BlockingQueue12emplace_backEDpRR4Args"></span><span id="_CPPv2IDpEN3ltb4util13BlockingQueue12emplace_backEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classltb_1_1util_1_1BlockingQueue_1aa003deee82ec2ea81a71d5dbf042a1e6"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">emplace_back</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN3ltb4util13BlockingQueue12emplace_backEvDpRR4Args" title="ltb::util::BlockingQueue::emplace_back::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4IDpEN3ltb4util13BlockingQueue12emplace_backEvDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue9pop_frontEv">
+<span id="_CPPv3N3ltb4util13BlockingQueue9pop_frontEv"></span><span id="_CPPv2N3ltb4util13BlockingQueue9pop_frontEv"></span><span id="ltb::util::BlockingQueue::pop_front"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1a4cab5e87e69ce889387b56162d982b2d"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pop_front</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN3ltb4util13BlockingQueueE" title="ltb::util::BlockingQueue::T"><span class="n"><span class="pre">T</span></span></a><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue9pop_frontEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue9pop_frontENSt6chrono11nanosecondsE">
+<span id="_CPPv3N3ltb4util13BlockingQueue9pop_frontENSt6chrono11nanosecondsE"></span><span id="_CPPv2N3ltb4util13BlockingQueue9pop_frontENSt6chrono11nanosecondsE"></span><span id="ltb::util::BlockingQueue::pop_front__std::chrono::nanoseconds"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1a53dc962b45c4c64505f4bfa1643e0202"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pop_front</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">chrono</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nanoseconds</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeout</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN3ltb4util13BlockingQueueE" title="ltb::util::BlockingQueue::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue9pop_frontENSt6chrono11nanosecondsE" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the front element or std::nullopt if the timeout is reached. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue5clearEv">
+<span id="_CPPv3N3ltb4util13BlockingQueue5clearEv"></span><span id="_CPPv2N3ltb4util13BlockingQueue5clearEv"></span><span id="ltb::util::BlockingQueue::clear"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1a41fb79bc5c07493705f2707db6ae99c5"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue5clearEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue4sizeEv">
+<span id="_CPPv3N3ltb4util13BlockingQueue4sizeEv"></span><span id="_CPPv2N3ltb4util13BlockingQueue4sizeEv"></span><span id="ltb::util::BlockingQueue::size"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1ad2561ef365fd142ccfa8bc63ecc5b907"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN3ltb4util13BlockingQueueE" title="ltb::util::BlockingQueue::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_type</span></span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue4sizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3ltb4util13BlockingQueue5emptyEv">
+<span id="_CPPv3N3ltb4util13BlockingQueue5emptyEv"></span><span id="_CPPv2N3ltb4util13BlockingQueue5emptyEv"></span><span id="ltb::util::BlockingQueue::empty"></span><span class="target" id="classltb_1_1util_1_1BlockingQueue_1a4d256aa89971df4589086f531c91ec74"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><a class="headerlink" href="#_CPPv4N3ltb4util13BlockingQueue5emptyEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classltb_1_1util_1_1AtomicData.html" class="btn btn-neutral float-left" title="Template Class AtomicData" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classltb_1_1util_1_1Error.html" class="btn btn-neutral float-right" title="Class Error" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Logan Barnes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

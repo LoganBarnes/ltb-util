@@ -1,0 +1,49 @@
+
+.. _program_listing_file_include_ltb_util_result.hpp:
+
+Program Listing for File result.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_result.hpp>` (``include/ltb/util/result.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   // project
+   #include "error.hpp"
+   
+   #if defined(LTB_EXPECTED) && defined(__GNUC__) && (__GNUC__ >= 4)
+   #define CHECK_RESULT __attribute__((warn_unused))
+   #elif defined(_MSC_VER) && (_MSC_VER >= 1700)
+   #define CHECK_RESULT _Check_return_
+   #else
+   #define CHECK_RESULT
+   #endif
+   
+   namespace tl {
+   
+   template <class T, class E>
+   class CHECK_RESULT expected;
+   
+   }
+   
+   // external
+   #include <tl/expected.hpp>
+   
+   // standard
+   #include <stdexcept>
+   
+   namespace ltb::util {
+   
+   template <typename T, typename E = ::ltb::util::Error>
+   using Result = tl::expected<T, E>;
+   
+   auto success() -> Result<void>;
+   
+   } // namespace ltb::util

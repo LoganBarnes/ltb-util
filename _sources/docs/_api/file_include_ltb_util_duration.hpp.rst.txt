@@ -1,0 +1,88 @@
+
+.. _file_include_ltb_util_duration.hpp:
+
+File duration.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ltb_util>` (``include/ltb/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ltb/util/duration.hpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ltb_util_duration.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``chrono``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ltb`
+
+- :ref:`namespace_ltb__util`
+
+- :ref:`namespace_ltb__util__detail`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_duration_8hpp_1ab6aa0b29b17956b5926223de9ab20032`
+
+- :ref:`exhale_function_duration_8hpp_1a3a24a23fd5feb6ba45a32fdf4972f0e5`
+
+- :ref:`exhale_function_duration_8hpp_1aaa20508a33dafb0d2d668648cae9f9e3`
+
+- :ref:`exhale_function_duration_8hpp_1a71629fb13b655727dc1e822ee9f43577`
+
+- :ref:`exhale_function_duration_8hpp_1aefc23eb79a51e98a9981a4b5a6cedf32`
+
+- :ref:`exhale_function_duration_8hpp_1a082581642eedc50d259beece531f352c`
+
+- :ref:`exhale_function_duration_8hpp_1a1d647bb6865aa570fb53bca4a682155c`
+
+- :ref:`exhale_function_duration_8hpp_1aa8ae59a70bd1c340e574f442ec0510b0`
+
+- :ref:`exhale_function_duration_8hpp_1a8670e8debc9caf3007087aa61dd258ac`
+
+- :ref:`exhale_function_duration_8hpp_1a646a87fe1122d77ac36df3d45de3ba44`
+
+- :ref:`exhale_function_duration_8hpp_1a5fc041bab1ab42fc35e94792ee25ea47`
+
+- :ref:`exhale_function_duration_8hpp_1ac2de24cc3d4ebf83b62f44e48ca4511c`
+
+- :ref:`exhale_function_duration_8hpp_1ac9a6e01d2fdb052da602ed799decbe02`
+
+- :ref:`exhale_function_duration_8hpp_1a885b93b5ef90ed01bd9475289ceabbe9`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_duration_8hpp_1abc0ba108ea35384ba9bac2d005ec8270`
+

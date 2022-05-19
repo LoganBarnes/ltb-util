@@ -1,0 +1,73 @@
+
+.. _file_include_ltb_util_error_callback.hpp:
+
+File error_callback.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ltb_util>` (``include/ltb/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ltb/util/error_callback.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ltb_util_error_callback.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``error.hpp`` (:ref:`file_include_ltb_util_error.hpp`)
+
+- ``functional``
+
+- ``stdexcept``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ltb`
+
+- :ref:`namespace_ltb__util`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_error__callback_8hpp_1a58b426ab9781be49f6630a6502494d65`
+
+- :ref:`exhale_function_error__callback_8hpp_1a1686a912c2bfa3c6ff73e5b371cda713`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_error__callback_8hpp_1aeaa0b4bdf4f2e8887043800f63ff2335`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_error__callback_8hpp_1aeca38cc1a244a6770abd4ab78abfa295`
+

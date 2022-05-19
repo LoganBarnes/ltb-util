@@ -1,0 +1,14 @@
+.. _exhale_function_enum__flags_8hpp_1a06602366eaa8f7bc3b9290ba3ef81052:
+
+Template Function ltb::util::remove_flag
+========================================
+
+- Defined in :ref:`file_include_ltb_util_enum_flags.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::remove_flag(Flags<E>, E)
+   :project: ltb

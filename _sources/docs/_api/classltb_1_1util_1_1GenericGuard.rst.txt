@@ -1,0 +1,17 @@
+.. _exhale_class_classltb_1_1util_1_1GenericGuard:
+
+Template Class GenericGuard
+===========================
+
+- Defined in :ref:`file_include_ltb_util_generic_guard.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ltb::util::GenericGuard
+   :project: ltb
+   :members:
+   :protected-members:
+   :undoc-members:

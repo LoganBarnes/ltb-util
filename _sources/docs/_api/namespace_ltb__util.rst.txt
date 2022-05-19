@@ -1,0 +1,204 @@
+
+.. _namespace_ltb__util:
+
+Namespace ltb::util
+===================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ltb__util__detail`
+
+- :ref:`namespace_ltb__util__flag_operators`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structltb_1_1util_1_1AsyncTaskRunner_1_1FinishedTask`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1AsyncTaskRunner_1_1TaskToDo`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1ContextError`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1Flags`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1PriorityTag`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1PriorityTag_3_010_01_4`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1ScopedLock`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1SourceLocation`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1Visitor`
+
+- :ref:`exhale_class_classltb_1_1util_1_1AsyncTaskRunner`
+
+- :ref:`exhale_class_classltb_1_1util_1_1AtomicData`
+
+- :ref:`exhale_class_classltb_1_1util_1_1BlockingQueue`
+
+- :ref:`exhale_class_classltb_1_1util_1_1Error`
+
+- :ref:`exhale_class_classltb_1_1util_1_1GenericGuard`
+
+- :ref:`exhale_class_classltb_1_1util_1_1MultiUuid`
+
+- :ref:`exhale_class_classltb_1_1util_1_1ScopedTimer`
+
+- :ref:`exhale_class_classltb_1_1util_1_1Timer`
+
+- :ref:`exhale_class_classltb_1_1util_1_1Uuid`
+
+- :ref:`exhale_class_classltb_1_1util_1_1UuidGenerator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_enum__flags_8hpp_1a6af8090ce9586d1286944503b5fb8086`
+
+- :ref:`exhale_function_enum__bits_8hpp_1a2004ff83d95ea9a72fecdcc931bc9178`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a9f8e898aeb6b852ee03b979d767c9084`
+
+- :ref:`exhale_function_comparison__utils_8hpp_1aa620c1f78777faba7f5ed6e7a7bc53de`
+
+- :ref:`exhale_function_duration_8hpp_1aaa20508a33dafb0d2d668648cae9f9e3`
+
+- :ref:`exhale_function_duration_8hpp_1a71629fb13b655727dc1e822ee9f43577`
+
+- :ref:`exhale_function_duration_8hpp_1aefc23eb79a51e98a9981a4b5a6cedf32`
+
+- :ref:`exhale_function_duration_8hpp_1a082581642eedc50d259beece531f352c`
+
+- :ref:`exhale_function_duration_8hpp_1a1d647bb6865aa570fb53bca4a682155c`
+
+- :ref:`exhale_function_duration_8hpp_1aa8ae59a70bd1c340e574f442ec0510b0`
+
+- :ref:`exhale_function_enum__flags_8hpp_1af80fc65d548595720d22e1009c64ebc4`
+
+- :ref:`exhale_function_enum__flags_8hpp_1ade01c38007e4408278abb06adad7df12`
+
+- :ref:`exhale_function_enum__bits_8hpp_1a183529fc8d8ca0ebe65b21da730a889b`
+
+- :ref:`exhale_function_container__utils_8hpp_1aac0a8f69a73267044e25bf333834a5f8`
+
+- :ref:`exhale_function_container__utils_8hpp_1af28076fb4d70906c0817f8e6aa000f13`
+
+- :ref:`exhale_function_hash__utils_8hpp_1a86e902cbfc84f99302ee17af4052f6fa`
+
+- :ref:`exhale_function_uuid_8hpp_1afb8f1d8cb3a92137bad5e391f10c90f4`
+
+- :ref:`exhale_function_ignore_8hpp_1a3b788c25ff04f3df75a280359cfdba62`
+
+- :ref:`exhale_function_error__callback_8hpp_1a58b426ab9781be49f6630a6502494d65`
+
+- :ref:`exhale_function_error_8hpp_1a7055aabbd4527dd15dcbe8173fd18f85`
+
+- :ref:`exhale_function_enum__flags_8hpp_1ace9d9c2d1186023e85c0027c1d61ed0a`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a15f576191f2fd84b9592b5920431609e`
+
+- :ref:`exhale_function_generic__guard_8hpp_1a7b1022b9614fa5cc8183d01ad4d54138`
+
+- :ref:`exhale_function_power__of__2_8hpp_1ae0e31abe0df50638308876555c508003`
+
+- :ref:`exhale_function_enum__flags_8hpp_1aa1bfd78ec1b8e85c16f347553e605aa2`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a69e6d4ff165e0e91e9b7f4a38127a51c`
+
+- :ref:`exhale_function_uuid_8hpp_1aa888be113f9e3379a598dec0592fffe6`
+
+- :ref:`exhale_function_uuid_8hpp_1abd43eb60e97059e0ac5b954037a4f29f`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a2a859d08733d6c184b0d5e71f8537b5f`
+
+- :ref:`exhale_function_uuid_8hpp_1a943f3e17d9ca8725c46cce92cf521003`
+
+- :ref:`exhale_function_uuid_8hpp_1ac7fdad69be16f242da3d626fa041f9ae`
+
+- :ref:`exhale_function_file__utils_8hpp_1a75098343c18d85c61004e8564e0f6a43`
+
+- :ref:`exhale_function_container__utils_8hpp_1a184c4a3e41e44e8f8cd5e3baa6b07ee6`
+
+- :ref:`exhale_function_container__utils_8hpp_1a7379d579933ddaaffdd946a47e526196`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a06602366eaa8f7bc3b9290ba3ef81052`
+
+- :ref:`exhale_function_string_8hpp_1ae0a121987ca02c15e785222b4ed67e54`
+
+- :ref:`exhale_function_hash__utils_8hpp_1a87789cfcc4ce38b7f824388078ee2e8d`
+
+- :ref:`exhale_function_result_8hpp_1a3af97410c4276886d3034c1c27897247`
+
+- :ref:`exhale_function_error__callback_8hpp_1a1686a912c2bfa3c6ff73e5b371cda713`
+
+- :ref:`exhale_function_enum__bits_8hpp_1aaac3704ba5ec82e9a29590c2d46e3eb0`
+
+- :ref:`exhale_function_enum__bits_8hpp_1a0a83863657c3934e4001d19ceb14a7f5`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a987bd1d187c0db9c1b4575e4b5d48bfe`
+
+- :ref:`exhale_function_duration_8hpp_1a8670e8debc9caf3007087aa61dd258ac`
+
+- :ref:`exhale_function_string_8hpp_1a696d2fb05d5b7fea2238a4cf83488587`
+
+- :ref:`exhale_function_duration_8hpp_1a646a87fe1122d77ac36df3d45de3ba44`
+
+- :ref:`exhale_function_duration_8hpp_1a5fc041bab1ab42fc35e94792ee25ea47`
+
+- :ref:`exhale_function_duration_8hpp_1ac2de24cc3d4ebf83b62f44e48ca4511c`
+
+- :ref:`exhale_function_duration_8hpp_1ac9a6e01d2fdb052da602ed799decbe02`
+
+- :ref:`exhale_function_duration_8hpp_1a885b93b5ef90ed01bd9475289ceabbe9`
+
+- :ref:`exhale_function_enum__flags_8hpp_1a7866d8d0268e0f3f3eec7acea65d1da3`
+
+- :ref:`exhale_function_enum__flags_8hpp_1ae99818b648bb825b26a7b2713f93618e`
+
+- :ref:`exhale_function_enum__bits_8hpp_1a42777620d0f863f10cb73788d10b3222`
+
+- :ref:`exhale_function_type__string_8hpp_1a8064856a3698f5b28a8ed50b3cfca5a3`
+
+- :ref:`exhale_function_type__string_8hpp_1a4634b9111f0811193372513fad37a1b8`
+
+- :ref:`exhale_function_variant__utils_8hpp_1aa59f46c67f50b28244fbe4f16679b918`
+
+- :ref:`exhale_function_variant__utils_8hpp_1af2ae074a23d3d8cb6c54b357b5d9042d`
+
+- :ref:`exhale_function_variant__utils_8hpp_1ad04e6ceb1283074e3064b4850e48f3bd`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_duration_8hpp_1abc0ba108ea35384ba9bac2d005ec8270`
+
+- :ref:`exhale_typedef_error__callback_8hpp_1aeaa0b4bdf4f2e8887043800f63ff2335`
+
+- :ref:`exhale_typedef_blocking__queue_8hpp_1aaa08f16d1122bca0b9d3bc563ace39e9`
+
+- :ref:`exhale_typedef_result_8hpp_1ac8c82aa741e46fb3b7b8ade3ab134a30`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_error__callback_8hpp_1aeca38cc1a244a6770abd4ab78abfa295`

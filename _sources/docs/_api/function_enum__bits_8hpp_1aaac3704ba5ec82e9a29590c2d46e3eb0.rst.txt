@@ -1,0 +1,14 @@
+.. _exhale_function_enum__bits_8hpp_1aaac3704ba5ec82e9a29590c2d46e3eb0:
+
+Template Function ltb::util::to_bits(Enum)
+==========================================
+
+- Defined in :ref:`file_include_ltb_util_enum_bits.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::to_bits(Enum)
+   :project: ltb

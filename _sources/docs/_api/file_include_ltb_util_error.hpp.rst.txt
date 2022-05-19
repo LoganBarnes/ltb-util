@@ -1,0 +1,83 @@
+
+.. _file_include_ltb_util_error.hpp:
+
+File error.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ltb_util>` (``include/ltb/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ltb/util/error.hpp``)
+-------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ltb_util_error.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``filesystem``
+
+- ``string`` (:ref:`file_include_ltb_util_string.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ltb_util_result.hpp`
+
+- :ref:`file_include_ltb_util_error_callback.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ltb`
+
+- :ref:`namespace_ltb__util`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structltb_1_1util_1_1ContextError`
+
+- :ref:`exhale_struct_structltb_1_1util_1_1SourceLocation`
+
+- :ref:`exhale_class_classltb_1_1util_1_1Error`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_error_8hpp_1a7055aabbd4527dd15dcbe8173fd18f85`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_error_8hpp_1a9fea57f3db8f8dbf3c7e7d33d4dde497`
+
+- :ref:`exhale_define_error_8hpp_1a710103504cc979878810f07db4fcc2fc`
+

@@ -1,0 +1,88 @@
+
+.. _file_include_ltb_util_result.hpp:
+
+File result.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ltb_util>` (``include/ltb/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ltb/util/result.hpp``)
+--------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ltb_util_result.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``error.hpp`` (:ref:`file_include_ltb_util_error.hpp`)
+
+- ``stdexcept``
+
+- ``tl/expected.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ltb_util_async_task_runner.hpp`
+
+- :ref:`file_include_ltb_util_file_utils.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ltb`
+
+- :ref:`namespace_ltb__util`
+
+- :ref:`namespace_tl`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classtl_1_1expected`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_result_8hpp_1a3af97410c4276886d3034c1c27897247`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_result_8hpp_1ac00a668fc7d1d0fdd8366c8f2e6edcc0`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_result_8hpp_1ac8c82aa741e46fb3b7b8ade3ab134a30`
+

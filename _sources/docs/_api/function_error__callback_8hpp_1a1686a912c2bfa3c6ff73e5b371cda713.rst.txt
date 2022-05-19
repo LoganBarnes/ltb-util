@@ -1,0 +1,14 @@
+.. _exhale_function_error__callback_8hpp_1a1686a912c2bfa3c6ff73e5b371cda713:
+
+Template Function ltb::util::throw_error
+========================================
+
+- Defined in :ref:`file_include_ltb_util_error_callback.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::throw_error(Error const&)
+   :project: ltb

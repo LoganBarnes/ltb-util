@@ -1,0 +1,25 @@
+
+.. _program_listing_file_include_ltb_util_power_of_2.hpp:
+
+Program Listing for File power_of_2.hpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_power_of_2.hpp>` (``include/ltb/util/power_of_2.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   // standard
+   #include <cstdint>
+   
+   namespace ltb::util {
+   
+   auto next_power_of_2(std::uint64_t value) -> std::uint64_t;
+   
+   } // namespace ltb::util

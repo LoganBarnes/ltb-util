@@ -1,0 +1,14 @@
+.. _exhale_function_duration_8hpp_1a71629fb13b655727dc1e822ee9f43577:
+
+Template Function ltb::util::duration_micros
+============================================
+
+- Defined in :ref:`file_include_ltb_util_duration.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::duration_micros(Input)
+   :project: ltb

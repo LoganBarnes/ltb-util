@@ -1,0 +1,14 @@
+.. _exhale_function_enum__bits_8hpp_1a42777620d0f863f10cb73788d10b3222:
+
+Template Function ltb::util::toggle_flag(const typename std::underlying_type<Enum>::type&, Enum)
+================================================================================================
+
+- Defined in :ref:`file_include_ltb_util_enum_bits.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::toggle_flag(const typename std::underlying_type<Enum>::type&, Enum)
+   :project: ltb

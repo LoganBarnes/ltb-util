@@ -1,0 +1,14 @@
+.. _exhale_function_duration_8hpp_1a5fc041bab1ab42fc35e94792ee25ea47:
+
+Template Function ltb::util::to_millis
+======================================
+
+- Defined in :ref:`file_include_ltb_util_duration.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::to_millis(Duration const&)
+   :project: ltb

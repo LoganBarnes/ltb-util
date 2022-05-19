@@ -1,0 +1,14 @@
+.. _exhale_function_string_8hpp_1a696d2fb05d5b7fea2238a4cf83488587:
+
+Function ltb::util::to_lower_ascii
+==================================
+
+- Defined in :ref:`file_include_ltb_util_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::to_lower_ascii(std::string const&)
+   :project: ltb

@@ -1,0 +1,14 @@
+.. _exhale_function_type__string_8hpp_1a220f5a714114c04be7c628b7370c0273:
+
+Function ltb::util::detail::replace_ugly_strings
+================================================
+
+- Defined in :ref:`file_include_ltb_util_type_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::detail::replace_ugly_strings(std::string)
+   :project: ltb

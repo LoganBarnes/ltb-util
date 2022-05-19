@@ -1,0 +1,17 @@
+.. _exhale_class_classltb_1_1util_1_1UuidGenerator:
+
+Class UuidGenerator
+===================
+
+- Defined in :ref:`file_include_ltb_util_uuid.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ltb::util::UuidGenerator
+   :project: ltb
+   :members:
+   :protected-members:
+   :undoc-members:

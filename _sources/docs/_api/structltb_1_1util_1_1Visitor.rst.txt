@@ -1,0 +1,26 @@
+.. _exhale_struct_structltb_1_1util_1_1Visitor:
+
+Template Struct Visitor
+=======================
+
+- Defined in :ref:`file_include_ltb_util_variant_utils.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Ts``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: ltb::util::Visitor
+   :project: ltb
+   :members:
+   :protected-members:
+   :undoc-members:

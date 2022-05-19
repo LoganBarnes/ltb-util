@@ -1,0 +1,76 @@
+
+.. _program_listing_file_include_ltb_util_generic_guard.hpp:
+
+Program Listing for File generic_guard.hpp
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ltb_util_generic_guard.hpp>` (``include/ltb/util/generic_guard.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   // Copyright (c) 2021 Logan Barnes - All Rights Reserved
+   // ///////////////////////////////////////////////////////////////////////////////////////
+   #pragma once
+   
+   #include <tuple>
+   #include <type_traits>
+   #include <utility>
+   
+   namespace ltb::util {
+   
+   template <typename Init, typename Destroy, typename... Args>
+   class GenericGuard;
+   
+   template <typename Init, typename Destroy, typename... Args>
+   auto make_guard(Init init_func, Destroy destroy_func, Args&&... args) -> GenericGuard<Init, Destroy, Args...>;
+   
+   template <typename Init, typename Destroy, typename... Args>
+   class GenericGuard {
+   public:
+       ~GenericGuard() { call_func(0, destroy_func_, std::make_index_sequence<sizeof...(Args)>()); }
+   
+       GenericGuard(GenericGuard const&)          = delete;
+       GenericGuard(GenericGuard&& that) noexcept = delete;
+       auto operator=(GenericGuard const&) -> GenericGuard& = delete;
+       auto operator=(GenericGuard&&) noexcept -> GenericGuard& = delete;
+   
+   private:
+       Destroy                                        destroy_func_;
+       std::tuple<typename std::decay<Args>::type...> arguments_;
+   
+       /*
+        * GenericGuard() is private so this friend function is the only way to create a GenericGuard
+        */
+       friend auto make_guard<Init, Destroy, Args...>(Init init_func, Destroy destroy_func, Args&&... args)
+           -> GenericGuard;
+   
+       explicit GenericGuard(Init init_func, Destroy destroy_func, Args&&... args)
+           : destroy_func_(destroy_func), arguments_(std::make_tuple(std::forward<Args>(args)...)) {
+           call_func(0, init_func, std::make_index_sequence<sizeof...(Args)>());
+       }
+   
+       // SFINAE function that is called when Func requires arguments
+       template <typename Func, std::size_t... S>
+       auto call_func(int, Func const& func, std::index_sequence<S...>)
+           -> decltype(func(std::get<S>(arguments_)...), void()) {
+           func(std::get<S>(arguments_)...);
+       }
+   
+       // SFINAE function that is called when Func does not require arguments
+       template <typename Func, std::size_t... S>
+       auto call_func(long, Func const& func, std::index_sequence<S...>) -> decltype(func(), void()) {
+           func();
+       }
+   };
+   
+   template <typename Init, typename Destroy, typename... Args>
+   auto make_guard(Init init_func, Destroy destroy_func, Args&&... args) -> GenericGuard<Init, Destroy, Args...> {
+       return GenericGuard<Init, Destroy, Args...>(std::move(init_func),
+                                                   std::move(destroy_func),
+                                                   std::forward<Args>(args)...);
+   }
+   
+   } // namespace ltb::util

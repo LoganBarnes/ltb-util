@@ -1,0 +1,14 @@
+.. _exhale_function_result_8hpp_1a3af97410c4276886d3034c1c27897247:
+
+Function ltb::util::success
+===========================
+
+- Defined in :ref:`file_include_ltb_util_result.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::success()
+   :project: ltb

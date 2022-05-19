@@ -1,0 +1,14 @@
+.. _exhale_function_generic__guard_8hpp_1a7b1022b9614fa5cc8183d01ad4d54138:
+
+Template Function ltb::util::make_guard
+=======================================
+
+- Defined in :ref:`file_include_ltb_util_generic_guard.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ltb::util::make_guard(Init, Destroy, Args&&...)
+   :project: ltb
