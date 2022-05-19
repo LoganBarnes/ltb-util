@@ -118,10 +118,10 @@ TEST_CASE("[ltb][util][async_task_runner][slow] AsyncTaskRunner runs tasks async
 
     after_invoke_time = std::chrono::system_clock::now();
 
-    CHECK(before_sleep_time < task_time);
-    CHECK(task_time < after_sleep_time);
-    CHECK(after_sleep_time < invoke_time);
-    CHECK(invoke_time < after_invoke_time);
+    CHECK(before_sleep_time <= task_time);
+    CHECK(task_time <= after_sleep_time);
+    CHECK(after_sleep_time <= invoke_time);
+    CHECK(invoke_time <= after_invoke_time);
 }
 
 TEST_CASE("[ltb][util][async_task_runner] AsyncTaskRunner runs tasks one at a time") {
