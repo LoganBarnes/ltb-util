@@ -19,7 +19,7 @@ set(ENV{CXXFLAGS} "--coverage -fprofile-arcs -ftest-coverage -fno-inline")
 #######################################################################
 
 # Clear the binary directory
-ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
+#ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
 
 find_program(CTEST_COVERAGE_COMMAND NAMES lcov)
 find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
