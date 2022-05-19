@@ -7,11 +7,15 @@ LTB Utilities
 
 **[Source][source-code-link]** | **[Documentation][documentation-link]**
 
-A common utilities library used for LTB projects. Contains C++ classes, 
+A common utilities library used for LTB projects. Contains C++ classes,
 CMake functions, and third-party imports used frequently by other projects.
 
-[travis-badge]: https://travis-ci.org/LoganBarnes/ltb-util.svg?branch=master
-[travis-link]: https://travis-ci.org/LoganBarnes/ltb-util
+# TODO
+
+https://blog.jread.com/auto-build-and-host-pretty-html-documentation-using-asciidoc-github-pages-github-actions-758a03f93d7d
+
+[travis-badge]: https://app.travis-ci.com/LoganBarnes/ltb-util.svg?branch=master
+[travis-link]: https://app.travis-ci.com/github/LoganBarnes/ltb-util
 [codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-util/branch/master/graph/badge.svg
 [codecov-link]: https://codecov.io/gh/LoganBarnes/ltb-util
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg

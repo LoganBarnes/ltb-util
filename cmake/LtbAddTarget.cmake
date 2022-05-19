@@ -54,6 +54,9 @@ function(ltb_add_library target)
     )
 
     if (BUILD_TESTING)
+        include(CTest)
+        enable_testing()
+
         add_executable(
                 Test${target}
                 ${ARGN}
