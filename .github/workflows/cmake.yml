@@ -60,23 +60,22 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C ${{matrix.build_type}} --output-on-failure
 
-  ##########################################
-  # Check code coverage and upload reports #
-  ##########################################
-  coverage:
+  ############################################
+  # Check memory and upload coverage reports #
+  ############################################
+  coverage-and-memory:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fetch
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install Dependencies
         run: apt install -y lcov valgrind
 
-      - name: Run Script
+      - name: Check Memory and Coverage
         run: ctest -S cmake/CTest.cmake --output-on-failure --verbose
 
       - name: Upload
-          uses: codecov/codecov-action@v2
-          with:
-            files: ./build/CMakeFiles/TestLtbUtil.dir/src/*.gcda
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./build/CMakeFiles/TestLtbUtil.dir/src/*.gcda
