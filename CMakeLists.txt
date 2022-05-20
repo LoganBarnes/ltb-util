@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 project(LtbUtil VERSION 1.0.0)
 
 # ##############################################################################
-# Options ###
+# Options
 # ##############################################################################
 option(LTB_ENABLE_TESTING "Enable LTB Testing" OFF)
 
@@ -14,12 +14,12 @@ if(LTB_ENABLE_TESTING AND NOT BUILD_TESTING)
 endif()
 
 # ##############################################################################
-# CMake Package Manager ###
+# CMake Package Manager
 # ##############################################################################
 include(cmake/CPM.cmake)
 
 # ##############################################################################
-# External Packages ###
+# External Packages
 # ##############################################################################
 include(cmake/LtbCreateDefaultTargets.cmake)
 
@@ -39,7 +39,7 @@ cpmaddpackage("gh:Neargye/magic_enum@0.7.3")
 cpmaddpackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
 # ##############################################################################
-# LtbUtil::LtbUtil ###
+# LtbUtil::LtbUtil
 # ##############################################################################
 ltb_create_default_targets(LtbUtil
                            src/async_task_runner.cpp
