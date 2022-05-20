@@ -61,7 +61,7 @@ Functions
 
 - :ref:`exhale_function_type__string_8hpp_1a220f5a714114c04be7c628b7370c0273`
 
-- :ref:`exhale_function_type__string_8hpp_1a8064856a3698f5b28a8ed50b3cfca5a3`
-
 - :ref:`exhale_function_type__string_8hpp_1a4634b9111f0811193372513fad37a1b8`
+
+- :ref:`exhale_function_type__string_8hpp_1a8064856a3698f5b28a8ed50b3cfca5a3`
 
