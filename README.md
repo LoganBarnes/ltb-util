@@ -23,4 +23,4 @@ sphinx-build -b html . ./docs/_build
 [license-link]: https://github.com/LoganBarnes/ltb-util/blob/master/LICENSE
 
 [source-code-link]: https://github.com/LoganBarnes/ltb-util
-[documentation-link]: https://loganbarnes.github.io/ltb-util
+[documentation-link]: https://loganbarnes.github.io/ltb-dev/ltb-util
