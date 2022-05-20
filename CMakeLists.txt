@@ -38,6 +38,13 @@ cpmaddpackage(NAME
 cpmaddpackage("gh:Neargye/magic_enum@0.7.3")
 cpmaddpackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
+if(doctest_ADDED)
+    target_include_directories(doctest SYSTEM
+                               INTERFACE
+                                   $<BUILD_INTERFACE:${doctest_SOURCE_DIR}>
+                               )
+endif()
+
 # ##############################################################################
 # LtbUtil::LtbUtil
 # ##############################################################################
