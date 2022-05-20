@@ -24,8 +24,9 @@ set(ENV{CXXFLAGS} "--coverage -fprofile-arcs -ftest-coverage -fno-inline")
 ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
 
 find_program(CTEST_COVERAGE_COMMAND NAMES gcov)
-find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
+set(CTEST_COVERAGE_EXTRA_FLAGS "--preserve-paths")
 
+find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--gen-suppressions=all")
 set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "${CTEST_MEMORYCHECK_COMMAND_OPTIONS} --leak-check=full")
 set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "${CTEST_MEMORYCHECK_COMMAND_OPTIONS} --leak-resolution=med")
