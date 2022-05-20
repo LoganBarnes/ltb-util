@@ -15,8 +15,8 @@ CMake functions, and third-party imports used frequently by other projects.
 sphinx-build -b html . ./docs/_build
 ```
 
-[gh-ci-badge]: https://github.com/LoganBarnes/ltb-util/actions/workflows/cmake.yml/badge.svg
-[gh-ci-link]: https://github.com/LoganBarnes/ltb-util/actions/workflows/cmake.yml
+[gh-ci-badge]: https://github.com/LoganBarnes/ltb-util/actions/workflows/ci.yml/badge.svg
+[gh-ci-link]: https://github.com/LoganBarnes/ltb-util/actions/workflows/ci.yml
 [codecov-badge]: https://codecov.io/gh/LoganBarnes/ltb-util/branch/main/graph/badge.svg?token=N7fc2sWM01
 [codecov-link]: https://codecov.io/gh/LoganBarnes/ltb-util
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
