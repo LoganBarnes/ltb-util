@@ -47,46 +47,55 @@ public:
     template <typename... Args>
     explicit AtomicData(Args&&... args);
 
-    /**
-     * @brief Use the data in a thread safe manner.
-     */
+    /// \brief Use the data in a thread safe manner.
     template <typename Func>
     auto use_safely(Func func);
 
+    /// \brief Use the data in a thread safe manner.
     template <typename Func>
     auto use_safely(Func func) const;
 
-    /**
-     * @brief Wait for 'notify_one' or 'notify_all' to be called on this data
-     *        structure before using the data in a thread safe manner.
-     */
+    /// \brief Safely get a copy of the data (name is taken from std::atomic::load).
+    auto load() const -> T;
+
+    /// \brief Safely set the data (name is taken from std::atomic::store).
+    auto store(T t) -> void;
+
+    /// \brief Wait for 'notify_one' or 'notify_all' to be called
+    ///        before using the data in a thread safe manner.
+    /// \param predicate - a predicate that must be true for `func` to be invoked.
     template <typename Pred, typename Func>
     auto wait_to_use_safely(Pred predicate, Func func) -> void;
 
+    /// \brief Wait for 'notify_one' or 'notify_all' to be called
+    ///        before using the data in a thread safe manner.
+    /// \param predicate - a predicate that must be true for `func` to be invoked.
     template <typename Pred, typename Func>
     auto wait_to_use_safely(Pred predicate, Func func) const -> void;
 
-    /**
-     * @brief Same as 'wait_to_use_safely' except a maximum wait time can be set.
-     */
+    /// \brief Wait for 'notify_one' or 'notify_all' to be called
+    ///        before using the data in a thread safe manner.
+    /// \param duration - the maximum length of time this function will wait before returning.
+    /// \param predicate - a predicate that must be true for `func` to be invoked.
     template <typename Rep, typename Period, typename Pred, typename Func>
     auto wait_to_use_safely(std::chrono::duration<Rep, Period> const& duration, Pred predicate, Func func) -> bool;
 
+    /// \brief Wait for 'notify_one' or 'notify_all' to be called
+    ///        before using the data in a thread safe manner.
+    /// \param duration - the maximum length of time this function will wait before returning.
+    /// \param predicate - a predicate that must be true for `func` to be invoked.
     template <typename Rep, typename Period, typename Pred, typename Func>
     auto wait_to_use_safely(std::chrono::duration<Rep, Period> const& duration, Pred predicate, Func func) const
         -> bool;
 
-    /**
-     * @brief Allow one 'wait_to_use_safely' function to continue.
-     */
+    /// \brief Allow one 'wait_to_use_safely' function to continue.
     auto notify_one() -> void;
 
-    /**
-     * @brief Allow all 'wait_to_use_safely' functions to continue.
-     */
+    /// \brief Allow all 'wait_to_use_safely' functions to continue.
     auto notify_all() -> void;
 
-    [[nodiscard]] auto lock() const -> ScopedLock;
+    /// \brief Prevent this data from being accessed until the returned object is destructed.
+    [[nodiscard]] auto scoped_lock() const -> ScopedLock;
 
 private:
     std::shared_ptr<std::mutex>              lock_;
@@ -119,6 +128,16 @@ template <typename Func>
 auto AtomicData<T>::use_safely(Func func) const {
     std::lock_guard<std::mutex> scoped_lock(*lock_);
     return func(data_);
+}
+
+template <typename T>
+auto AtomicData<T>::load() const -> T {
+    return use_safely([](auto data) { return data; });
+}
+
+template <typename T>
+auto AtomicData<T>::store(T data) -> void {
+    use_safely([data](auto& stored_data) { stored_data = data; });
 }
 
 template <typename T>
@@ -173,10 +192,10 @@ auto AtomicData<T>::notify_all() -> void {
 }
 
 template <typename T>
-auto AtomicData<T>::lock() const -> ScopedLock {
-    ScopedLock scoped_lock{lock_};
-    scoped_lock.lock = std::make_shared<std::lock_guard<std::mutex>>(*scoped_lock.mutex);
-    return scoped_lock;
+auto AtomicData<T>::scoped_lock() const -> ScopedLock {
+    ScopedLock lock{lock_};
+    lock.lock = std::make_shared<std::lock_guard<std::mutex>>(*lock.mutex);
+    return lock;
 }
 
 } // namespace ltb::util
